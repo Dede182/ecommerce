@@ -12,6 +12,10 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                Inter : ['Inter','sans-serif'],
+                Merriweather : ['Merriweather','serif'],
+                Mukta : ['Mukta','sans-serif'],
+                Sono : ['Sono','sans-serif']
             },
         },
     },
