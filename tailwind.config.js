@@ -9,6 +9,7 @@ module.exports = {
     ],
 
     theme: {
+
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
@@ -17,11 +18,16 @@ module.exports = {
                 Mukta: ['Mukta', 'sans-serif'],
                 Sono: ['Sono', 'sans-serif']
             },
+
         },
+
+
     },
+
 
     plugins: [
         require('@tailwindcss/forms'),
-        require('flowbite/plugin')
+        require('flowbite/plugin'),
+        require('tailwindcss-plugins/pagination'),
     ],
 };

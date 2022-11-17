@@ -1,4 +1,4 @@
-<div class="w-full h-[100vh] sidebg bg-green-600">
+<div class="w-full h-full sticky left-0 sidebg bg-green-600">
     <div class="py-4 px-1">
 
         {{-- header --}}

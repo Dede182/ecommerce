@@ -3,8 +3,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex py-3">
-                <form action="#" class="flex text-sm space-x-0">
-                    <input class="px-3 py-1 w-80 rounded-l-md text-sm placeholder:text-gray-500" type="text"
+                <form action="{{ route('product.index') }}"  class="flex text-sm space-x-0">
+                    <input name = "search" class="px-3 py-1 w-80 rounded-l-md text-sm placeholder:text-gray-500" type="text"
                         placeholder="I am searching for..">
                     <button class="border rounded-r-md px-3 border-green-700 bg-green-700">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -34,8 +34,12 @@
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             {{-- <div>{{ Auth::user()->name }}</div> --}}
-                            <div class="">
+                            <div class="flex space-x-3">
                                 <img src="{{ asset('default user.jpg') }}" class="w-6 h-6 rounded-full" alt="">
+                                <div class="flex flex-col">
+                                    <p>{{ Str::ucfirst( Auth::user()->name )}}</p>
+                                    <p class="text-xs text-gray-600 font-Inter"> {{ Str::ucfirst(Auth::user()->role) }}</p>
+                                </div>
                             </div>
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

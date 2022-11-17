@@ -14,16 +14,16 @@
 
           <button type="button" class="!text-white bg-transparent" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
 
-            <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
           </button>
         </h2>
         <div id="accordion-collapse-body-2" class="hidden mt-3 w-full transition" aria-labelledby="accordion-collapse-heading-2">
             <div class="flex flex-col">
                 <div class="pl-8 flex flex-col space-y-2">
-                    <form action="#" class="text-sm font-semibold">
+                    <form action="{{ route('category.index') }}" class="text-sm font-semibold">
                         <button>- Categories List</button>
                     </form>
-                    <form action="#" class="text-sm font-semibold">
+                    <form  action="{{ route('category.create') }}"class="text-sm font-semibold">
                         <button>- Add new category</button>
                     </form>
                 </div>

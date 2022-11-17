@@ -16,14 +16,14 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+    <div class=" bg-gray-100">
 
         <div class="flex ">
-            <div class="w-[30%]">
+            <div class="w-[30%] lg:w-[20%]">
                 @include('layouts.sidebar')
             </div>
 
-            <div class="w-full">
+            <div class="w-full min-h-[100vh]">
                 @include('layouts.navigation')
                 <!-- Page Content -->
                 <main>
@@ -34,6 +34,14 @@
 
 
     </div>
+    <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            @if (session('status'))
+                showToast("{{ session('status') }}")
+            @endif
+        })
+    </script>
+    @stack('script')
 
 </body>
 

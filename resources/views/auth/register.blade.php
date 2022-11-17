@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="flex items-center justify-center space-x-20">
+    <div class="flex items-center  h-[70vh]  justify-center space-x-20">
         <div class="">
             <lottie-player autoplay loop mode="normal" src="{{ asset('svg/regiser.json') }}" style="width: 320px">
             </lottie-player>

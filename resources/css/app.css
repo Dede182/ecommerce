@@ -12,3 +12,10 @@
 .table-row:nth-child(odd){
     background:#efefef79;
 }
+
+.pagination .page-item.active .page-link {
+    background-color: #0da487!important;
+    border-color: #2779BD;
+    color: #ffffff;
+}
+
