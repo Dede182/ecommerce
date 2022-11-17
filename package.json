@@ -16,6 +16,7 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
-        "@lottiefiles/lottie-player": "^1.6.0"
+        "@lottiefiles/lottie-player": "^1.6.0",
+        "flowbite": "^1.5.4"
     }
 }
