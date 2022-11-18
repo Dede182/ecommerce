@@ -19,8 +19,7 @@ return new class extends Migration
             $table->double('price');
             $table->integer('stock');
             $table->longText('description');
-            $table->string('featured image')->nullable();
-            $table->string('product images')->nullable();
+            $table->string('featuredImage')->nullable();
             $table->double('review star');
             $table->double('discount')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();

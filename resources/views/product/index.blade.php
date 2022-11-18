@@ -58,9 +58,9 @@
                                     <td class="py-4 px-6 text-center">
                                         {{ Str::ucfirst($product->category->title )}}
                                     </td>
-                                    <td class="py-4 px-6 text-center
+                                    <td class="py-4 px-6 text-center font-bold
                                        @if ($product->stock > 10)
-                                           text-green-300
+                                           text-green-900
                                            @else
                                            text-red-700
                                        @endif

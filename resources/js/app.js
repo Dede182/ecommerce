@@ -3,6 +3,7 @@ import './bootstrap';
 import Alpine from 'alpinejs';
 import "@lottiefiles/lottie-player";
 import 'flowbite';
+import 'jquery';
 window.Alpine = Alpine;
 
 import Swal from 'sweetalert2'
