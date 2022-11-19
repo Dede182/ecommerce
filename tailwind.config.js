@@ -29,5 +29,6 @@ module.exports = {
         require('@tailwindcss/forms'),
         require('flowbite/plugin'),
         require('tailwindcss-plugins/pagination'),
+        require('tailwind-scrollbar-hide')
     ],
 };

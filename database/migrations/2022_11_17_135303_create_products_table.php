@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->longText('description');
             $table->string('featuredImage')->nullable();
-            $table->double('review star');
+            $table->double('review star')->nullable();
             $table->double('discount')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();

@@ -22,10 +22,10 @@ class ProductController extends Controller
         $products = Product::
         search()
         ->latest('id')
-        ->with('category')
+        ->with('category','productImages')
         ->paginate(10)
         ->withQueryString();
-        return $products;
+        // return $products;
         return view('product.index',compact('products'));
     }
 
@@ -55,33 +55,38 @@ class ProductController extends Controller
         $product->title = $request->title;
         $product->description = $request->description;
         $product->price = $request->price;
+        $product->stock = $request->stock;
         $product->category_id = $request->category_id;
+        $product->user_id = Auth::user()->id;
         Storage::makeDirectory('public/'.Auth::user()->name);
         Storage::makeDirectory('public/'.Auth::user()->name.'/'.$request->title);
         if($request->hasFile('featured_image')){
             $newName = "featured_image.".uniqid().'.'.$request->file('featured_image')->extension();
-            $storagePath = 'public/'.Auth::user()->name.'/'.$request->title.'/'.$newName;
+            $storagePath = 'public/'.Auth::user()->name.'/'.$request->title.'/featured';
             Storage::makeDirectory($storagePath);
             $request->file('featured_image')->storeAs($storagePath.'/',$newName);
             $product->featuredImage = $newName;
         }
-
+        $product->save();
         if($request->hasFile('productImages')){
             $productImageCollection = [];
             foreach($request->productImages as $key=>$productImage){
 
                 $newName = "productImage.".uniqid().'.'.$productImage->extension();
-                $storagePath = 'public/'.Auth::user()->name.'/'.$request->title.'/';
+                $storagePath = 'public/'.Auth::user()->name.'/'.$request->title.'/main';
                 Storage::makeDirectory($storagePath);
                 $productImage->storeAs($storagePath.'/',$newName);
 
-                $productImageCollection[$key] = $newName;
+                $productImageCollection[$key] = [
+                    'productImage' => $newName,
+                    'product_id' => $product->id,
+                ];
             }
             // return $productImageCollection;
             ProductImage::insert($productImageCollection);
         }
 
-        return $product;
+        return redirect()->route('product.index')->with('status','Product was created successfully');
     }
 
     /**
@@ -92,7 +97,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('product.show',compact(['product']));
     }
 
     /**

@@ -46,7 +46,13 @@
                                 @forelse ($products as $product)
                                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                     <td class="py-4 px-6 flex justify-center">
-                                        <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}" class="h-12 w-12 rounded-lg object-cover" alt="">
+                                       @if(count($product->productImages) <1)
+
+                                       <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}" class="h-12 w-12 rounded-lg object-cover" alt="">
+                                       @else
+                                       <img src="{{ asset('storage/'.Auth::user()->name.'/'.$product->title.'/featured/'.$product->featuredImage) }}" class="h-12 w-12 rounded-lg object-cover" alt="">
+
+                                       @endif
                                     </td>
                                     <td
                                         class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">

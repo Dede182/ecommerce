@@ -159,7 +159,34 @@
                         </div>
                     </div>
                 </div>
+                {{-- stock --}}
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-5">
+                    <div class="p-6 bg-white border-b border-gray-200 font-Mukta">
+                        <h3 class="text-lg font-bold  mb-4">Other Details</h3>
 
+                        <div class="flex items-center mt-4">
+                            <label for="price"
+                                class=" mb-2 text-sm font-medium w-[30%] text-gray-900 dark:text-white">Product
+                                Stocks</label>
+                                <div class="flex flex-col w-full">
+                                    <input
+
+                                    type="number" name="stock" id="stock"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-700 focus:border-green-700 block w-full p-2.5
+                                        @error('stock')
+                                        border-red-700
+                                          @enderror
+                                        "
+                                        value = "{{ old('stock') }}"
+                                        placeholder="Avaiable amounts " required>
+                                        @error('stock')
+                                        <div class="text-sm text-red-600">&bull; {{ $message }}</div>
+                                    @enderror
+                                </div>
+                        </div>
+
+                    </div>
+                </div>
                 {{-- button --}}
                 <div class="flex justify-between mt-4">
                     <div class=""></div>
@@ -192,7 +219,7 @@
                         var reader = new FileReader();
                         reader.addEventListener('load', (e) => {
                             mainImages.innerHTML +=
-                                `<img src=${e.target.result} class="w-12 h-12 object-cover"/>`
+                                `<img src=${e.target.result} class="w-14 h-14 object-cover"/>`
                         })
                         reader.readAsDataURL(files[i]);
 

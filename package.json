@@ -20,6 +20,7 @@
         "@lottiefiles/lottie-player": "^1.6.0",
         "flowbite": "^1.5.4",
         "jquery": "^3.6.1",
-        "sweetalert2": "^11.6.9"
+        "sweetalert2": "^11.6.9",
+        "tailwind-scrollbar-hide": "^1.1.7"
     }
 }

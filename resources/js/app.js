@@ -14,6 +14,7 @@ window.showToast = (message)=>{
         position: 'bottom-end',
         showConfirmButton: false,
         timer: 3000,
+        customClass :'style',
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.addEventListener('mouseenter', Swal.stopTimer)
