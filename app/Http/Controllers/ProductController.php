@@ -25,6 +25,7 @@ class ProductController extends Controller
         ->with('category')
         ->paginate(10)
         ->withQueryString();
+        return $products;
         return view('product.index',compact('products'));
     }
 
