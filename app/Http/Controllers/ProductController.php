@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\ProductImage;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -95,8 +96,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Request $request)
     {
+        $product = Product::where('id',"$request->product")
+        ->with('category','productImages')
+        ->first();
+        // return $product;
         return view('product.show',compact(['product']));
     }
 

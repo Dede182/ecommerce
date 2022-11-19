@@ -20,10 +20,10 @@
         <div id="accordion-collapse-body-1" class="hidden mt-3 w-full transition" aria-labelledby="accordion-collapse-heading-1">
             <div class="flex flex-col">
                 <div class="pl-8 flex flex-col space-y-2">
-                    <form action="#" class="text-sm font-semibold">
+                    <form action="{{ route('product.index') }}" class="text-sm font-semibold">
                         <button>- Product List</button>
                     </form>
-                    <form action="#" class="text-sm font-semibold">
+                    <form action="{{ route('product.create') }}" class="text-sm font-semibold">
                         <button>- Add new Product</button>
                     </form>
                 </div>

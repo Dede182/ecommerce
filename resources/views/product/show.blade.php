@@ -29,7 +29,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                         </svg>
 
-                        <a class="font-Merriweather text-xs">item</a>
+                        <a class="font-Merriweather text-xs">{{ $product->title }}</a>
                     </div>
                 </div>
 
@@ -37,43 +37,67 @@
                     <div class="w-[40%]">
                         <div class="flex flex-col space-y-6">
                             <div class="flex px-6">
-                                <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                                    class="w-80 h-80 object-cover rounded-md" alt="">
+                                @if (count($product->productImages) >0)
+                                <img id="mainImage"
+                                 src="{{ asset('storage/'.Auth::user()->name.'/'.$product->title.'/main/'.$product->productImages[0]->productImage) }}"
+                                    class="w-80 h-80 object-cover rounded-md mainImage" alt="">
+
+                                    @else
+                                    <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
+                                    class="w-80 h-80 object-cover rounded-md mainImage" alt="">
+                                @endif
                             </div>
 
-                            <div class="flex space-x-10 px-3 hover:overflow-x-scroll overflow-hidden w-[90%]">
+                            <div class="flex space-x-10 px-3 hover:overflow-x-scroll overflow-hidden pb-3 w-[90%]">
+                                @if (count($product->productImages) >0)
+                                    @foreach ($product->productImages as $key=>$pro)
+                                    <img id = {{ $key }}
+                                    onclick="mainImage.setAttribute('src','{{ asset('storage/'.Auth::user()->name.'/'.$product->title.'/main/'.$product->productImages[$key]->productImage) }}')"
+
+                                    src="{{ asset('storage/'.Auth::user()->name.'/'.$product->title.'/main/'.$pro->productImage) }}"
+                                    class="w-14 h-14 object-cover rounded-md cursor-pointer slideImage" alt="">
+                                    @endforeach
+                                @else
+                                 {{-- if no images  --}}
+                                 <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
+                                 class="w-14 h-14 object-cover rounded-md" alt="">
+                                 <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
+                                 class="w-14 h-14 object-cover rounded-md" alt="">
+                                 <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
+                                 class="w-14 h-14 object-cover rounded-md" alt="">
+                                 <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
+                                 class="w-14 h-14 object-cover rounded-md" alt="">
                                 <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                                    class="w-14 h-14 object-cover rounded-md" alt="">
-                                <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                                    class="w-14 h-14 object-cover rounded-md" alt="">
-                                <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                                    class="w-14 h-14 object-cover rounded-md" alt="">
-                                <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                                    class="w-14 h-14 object-cover rounded-md" alt="">
-                                <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                                    class="w-14 h-14 object-cover rounded-md" alt="">
-                                <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                                    class="w-14 h-14 object-cover rounded-md" alt="">
-                                <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                                    class="w-14 h-14 object-cover rounded-md" alt="">
-                                <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                                    class="w-14 h-14 object-cover rounded-md" alt="">
-                                <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                                    class="w-14 h-14 object-cover rounded-md" alt="">
+                                 class="w-14 h-14 object-cover rounded-md" alt="">
+                                @endif
+
+
                             </div>
                         </div>
                     </div>
                     {{-- product information --}}
                     <div class="w-[60%] pr-5">
-                        <div class="flex flex-col space-y-5 font-semibold font-Merriweather ">
-                            <h3 class="text-2xl font-Merriweather font-medium">Product Name</h3>
+                        <div class="flex flex-col space-y-5 font-semibold font-Inter ">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-2xl  font-medium">{{ $product->title }}</h3>
+                                <div class="">
+                                    <a class="ml-3 flex items-center" href="#">
+                                        <button class="flex font-medium font-Mukta items-center text-blue-800 hover:text-blue-600 transition">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="blue" class="w-4 h-4">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                                              </svg>
+                                              <p>Edit</p>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
 
                             <div class="flex justify-between ">
                                 <div class="flex">
                                     <p class="w-20">Price :</p>
                                     <div class="flex">
                                         <span class="font-Mukta">$</span>
-                                        <p>200</p>
+                                        <p>{{ $product->price }}</p>
                                     </div>
                                 </div>
 
@@ -125,11 +149,7 @@
 
                             <div class="text-gray-700">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita minus possimus
-                                    dolorum eveniet architecto, assumenda, ex animi aliquam nesciunt placeat magni
-                                    eaque? Repellat laboriosam, libero accusantium labore assumenda, odit iusto alias
-                                    impedit in voluptatum delectus eligendi nobis, dolorum non reiciendis. Libero saepe
-                                    nesciunt corrupti.
+                                    {{ $product->description }}
                                 </p>
                             </div>
 
@@ -139,13 +159,13 @@
                                     <ul class="flex flex-wrap items-center text-sm  text-center" id="myTab"
                                         data-tabs-toggle="#myTabContent" role="tablist">
                                         <li class="mr-2" role="presentation">
-                                            <button class="w-32 py-2 bg-gray-200 rounded-md" id="Detail-tab"
+                                            <button class="w-32 py-2 bg-gray-200 focus:text-black  rounded-md" id="Detail-tab"
                                                 data-tabs-target="#Detail" type="button" role="tab"
                                                 aria-controls="Detail" aria-selected="false">Another Details</button>
                                         </li>
                                         <li class="mr-2" role="presentation">
                                             <button
-                                                class="w-32 py-2 bg-gray-200 rounded-md"
+                                                class="w-32 py-2 bg-gray-200 focus:text-black  rounded-md"
                                                 id="review-tab" data-tabs-target="#review" type="button"
                                                 role="tab" aria-controls="review"
                                                 aria-selected="false">Review</button>
@@ -156,15 +176,15 @@
 
                                 <div id="myTabContent">
                                     {{-- detail --}}
-                                    <div class="hidden p-4 bg-gray-50 rounded-lg font-Mukta dark:bg-gray-800 font-Mukta" id="Detail"
+                                    <div class="hidden p-4 bg-gray-50 rounded-lg font-Mukta dark:bg-gray-800  " id="Detail"
                                         role="tabpanel" aria-labelledby="Detail-tab">
                                         <div class="flex flex-col space-y-4">
-                                            <div class="flex bg-gray-200 px-3 rounded-lg">
+                                            <div class="flex bg-gray-200 px-3 rounded-lg hover:brightness-105 transition">
                                                 <p class="w-[40%] border-r-2 py-2 border-gray-100">Item stocks</p>
-                                                <span class="px-4 py-2 text-gray-700"> 22 </span>
+                                                <span class="px-4 py-2 text-gray-700"> {{ $product->stock }}</span>
                                             </div>
 
-                                            <div class="flex bg-gray-200 px-3 rounded-lg">
+                                            <div class="flex bg-gray-200 px-3 rounded-lg hover:brightness-105 transition">
                                                 <p class="w-[40%] border-r-2 py-2 border-gray-100">Order received</p>
                                                 <span class="px-4 py-2 text-gray-700"> 4 </span>
                                             </div>
@@ -182,4 +202,20 @@
             </div>
         </div>
     </div>
+
+    @push('script')
+    <script>
+        const slideImage = document.querySelectorAll('.slideImage')
+        const mainImage = document.getElementById('mainImage')
+
+        slideImage.forEach(slide => {
+            slide.addEventListener('click',(e)=>{
+                const index = e.target.id;
+                console.log(slide.id);
+
+            })
+        })
+    </script>
+
+    @endpush
 </x-app-layout>
