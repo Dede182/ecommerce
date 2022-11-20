@@ -1,5 +1,5 @@
-<x-guest-layout>
-
+@extends('front')
+@section('content')
     <div class="flex justify-between items-center px-28 py-4 bg-gray-100">
         <div class="font-Inter font-bold">
             Login
@@ -92,5 +92,4 @@
             </form>
         </x-auth-card>
     </div>
-
-</x-guest-layout>
+@endsection

@@ -34,6 +34,7 @@
 
 
     </div>
+
     <script>
           document.addEventListener('DOMContentLoaded', () => {
             @if (session('status'))

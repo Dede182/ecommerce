@@ -4,6 +4,10 @@ import Alpine from 'alpinejs';
 import "@lottiefiles/lottie-player";
 import 'flowbite';
 import 'jquery';
+import '../../node_modules/@fortawesome/fontawesome-free/js/brands';
+import '../../node_modules/@fortawesome/fontawesome-free/js/solid';
+import '../../node_modules/@fortawesome/fontawesome-free/js/fontawesome';
+
 window.Alpine = Alpine;
 
 import Swal from 'sweetalert2'

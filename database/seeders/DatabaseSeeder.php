@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CategorySeeder::class,
-            ProductSeeder::class
+            ProductSeeder::class,
+            ReviewSeeder::class,
         ]);
         $file = new FileSystem;
         $file->cleanDirectory('storage/app/public/');

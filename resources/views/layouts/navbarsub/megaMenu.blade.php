@@ -15,7 +15,7 @@
         x-show="open"
         x-transition.duration.500ms
         x-transition.origin.top
-        class="absolute top-10 -left-20 bg-white shadow-2xl rounded-lg  w-96 ">
+        class="absolute top-10 -left-20 bg-white shadow-2xl rounded-lg z-20 w-96 ">
             <div class="flex space-x-10 px-10 pb-6 pt-4">
                 <div class="flex-col">
                     <h3 class="text-green-500">Daily vegetables</h3>

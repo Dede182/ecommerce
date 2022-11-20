@@ -46,7 +46,7 @@
                                 @forelse ($products as $product)
                                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                     <td class="py-4 px-6 flex justify-center">
-                                       @if(count($product->productImages) <1)
+                                       @if(is_null($product->featuredImage))
 
                                        <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}" class="h-12 w-12 rounded-lg object-cover" alt="">
                                        @else

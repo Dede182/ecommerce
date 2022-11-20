@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ProductImage;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\ProductImage;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -100,9 +101,10 @@ class ProductController extends Controller
     public function show(Request $request)
     {
         $product = Product::where('id',"$request->product")
-        ->with('category','productImages')
+        ->with('category','productImages','reviews')
         ->first();
-        // return $product;
+        // return $product->reviews;
+        // $reviewUser = User::where('id',$product->reviews->user_id);
         return view('product.show',compact(['product']));
     }
 
@@ -135,6 +137,7 @@ class ProductController extends Controller
         $product = Product::where('id',$product->id)->first();
         // return $product;
         // return $request;
+        $product->folder = $product->title;
         $product->title = $request->title;
         $product->description = $request->description;
         $product->price = $request->price;

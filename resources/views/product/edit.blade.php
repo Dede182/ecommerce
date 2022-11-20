@@ -70,14 +70,11 @@
                                 <div class="flex items-center justify-start w-full   ">
                                     <div class="relative">
                                         <div class="">
-                                            @if (count($product->productImages) < 1)
-                                                <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                                                    class="h-40 w-40 rounded-lg object-cover" alt="">
-                                            @else
+
                                                 <img id="editFeaturedImage"
                                                     src="{{ asset('storage/' . Auth::user()->name . '/' . $product->folder . '/featured/' . $product->featuredImage) }}"
                                                     class="h-40 w-40 rounded-lg object-cover" alt="">
-                                            @endif
+
 
                                         </div>
 
@@ -110,7 +107,9 @@
                                     class="  text-sm font-medium w-[30%] text-gray-900 dark:text-white">Product
                                     Images</label>
 
-                                <div class="  space-x-7  grid grid-cols-5 items-center place-items-center w-full flex-wrap space-y-5 ">
+                                <div class="space-x-7 grid grid-cols-5 items-center place-items-center  w-full flex-wrap space-y-5 "
+                                id="mainImages"
+                                >
 
                                     @if (count($product->productImages) > 0)
                                         @foreach ($product->productImages as $key => $pro)
@@ -155,19 +154,17 @@
                                         id="showProductImages"
                                         class="w-16 h-14 object-cover px-4 py-1 outline-gray-200 outline-dashed
                                      bg-gray-100 opacity-75 cursor-pointer" />
-                                    <input form="editForm" type="file" multiple id="productImage" name="productImages[]"
-                                        class="hidden" />
-                                    @error('productImages.*')
-                                        <div class="text-sm text-red-600">&bull; {{ $message }}</div>
-                                    @enderror
-                                    <div class="flex space-x-8 flex-wrap" id="mainImages">
 
-                                    </div>
+
                                 </div>
 
                             </div>
-
                         </div>
+                        <input form="editForm" type="file" multiple id="productImage" name="productImages[]"
+                        class="hidden" />
+                    @error('productImages.*')
+                        <div class="text-sm text-red-600">&bull; {{ $message }}</div>
+                    @enderror
                     </div>
                 </div>
 
@@ -249,7 +246,7 @@
                                         border-red-700
                                           @enderror
                                         "
-                                    value="{{ $product->discount }}" placeholder="Enter the amount of the dropping price of your item" required>
+                                    value="{{ $product->discount }}" placeholder="Enter the amount of the dropping price of your item"  >
                                 @error('stock')
                                     <div class="text-sm text-red-600">&bull; {{ $message }}</div>
                                 @enderror

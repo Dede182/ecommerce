@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\productImageController;
 use App\Models\Category;
@@ -29,5 +30,5 @@ Route::middleware('auth','verified')->group(function(){
     Route::delete('/productImage',[productImageController::class,'destroy'])->name('productImage.destroy');
 });
 
-
+Route::get('/front',[FrontController::class,'index'])->name('front');
 require __DIR__.'/auth.php';
