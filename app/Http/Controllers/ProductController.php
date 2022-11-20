@@ -54,6 +54,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->title = $request->title;
+        $product->folder = $request->title;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->stock = $request->stock;
@@ -111,9 +112,14 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Request $request)
     {
-        //
+        $product = Product::where('id',"$request->product")
+        ->with('category','productImages')
+        ->first();
+        $categories = Category::latest('id')->get();
+        // return $product;
+        return view('product.edit',compact(['product','categories']));
     }
 
     /**
@@ -125,7 +131,46 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+
+        $product = Product::where('id',$product->id)->first();
+        // return $product;
+        // return $request;
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->stock = $request->stock;
+        $product->category_id = $request->category_id;
+        $product->discount = $request->discount;
+        $product->user_id = Auth::user()->id;
+        Storage::makeDirectory('public/'.Auth::user()->name);
+        Storage::makeDirectory('public/'.Auth::user()->name.'/'.$product->folder);
+        if($request->hasFile('featured_image')){
+            $newName = "featured_image.".uniqid().'.'.$request->file('featured_image')->extension();
+            $storagePath = 'public/'.Auth::user()->name.'/'.$product->folder.'/featured';
+            Storage::makeDirectory($storagePath);
+            $request->file('featured_image')->storeAs($storagePath.'/',$newName);
+            $product->featuredImage = $newName;
+        }
+        $product->update();
+        if($request->hasFile('productImages')){
+            $productImageCollection = [];
+            foreach($request->productImages as $key=>$productImage){
+
+                $newName = "productImage.".uniqid().'.'.$productImage->extension();
+                $storagePath = 'public/'.Auth::user()->name.'/'.$product->folder.'/main';
+                Storage::makeDirectory($storagePath);
+                $productImage->storeAs($storagePath.'/',$newName);
+
+                $productImageCollection[$key] = [
+                    'productImage' => $newName,
+                    'product_id' => $product->id,
+                ];
+            }
+            // return $productImageCollection;
+            ProductImage::insert($productImageCollection);
+        }
+
+        return redirect()->route('product.index')->with('status','Product was updated successfully');
     }
 
     /**
@@ -136,6 +181,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $productName =$product->title;
+
+        if(isset($product->featuredImage)){
+            Storage::deleteDirectory('public/'.Auth::user()->name.'/'.$product->folder);
+        }
+        $product->delete();
+        return redirect()->route('product.index')->with('status',$productName . ' was removed');
     }
 }

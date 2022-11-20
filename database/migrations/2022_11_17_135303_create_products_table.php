@@ -19,6 +19,7 @@ return new class extends Migration
             $table->double('price');
             $table->integer('stock');
             $table->longText('description');
+            $table->string('folder')->nullable();
             $table->string('featuredImage')->nullable();
             $table->double('review star')->nullable();
             $table->double('discount')->nullable();
