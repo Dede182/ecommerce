@@ -15,4 +15,11 @@ class FrontController extends Controller
 
         return view('front.index',compact('categories','products'));
     }
+    public function product(Request $request){
+
+        $product =  Product::where('id',"$request->id")
+        ->with('category','productImages','reviews')
+        ->first();
+        return view('front.show',compact('product'));
+    }
 }

@@ -61,11 +61,11 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $product->category_id = $request->category_id;
         $product->user_id = Auth::user()->id;
-        Storage::makeDirectory('public/'.Auth::user()->name);
-        Storage::makeDirectory('public/'.Auth::user()->name.'/'.$request->title);
+        Storage::makeDirectory('public/product');
+        Storage::makeDirectory('public/product'.'/'.$request->title);
         if($request->hasFile('featured_image')){
             $newName = "featured_image.".uniqid().'.'.$request->file('featured_image')->extension();
-            $storagePath = 'public/'.Auth::user()->name.'/'.$request->title.'/featured';
+            $storagePath = 'public/product'.'/'.$request->title.'/featured';
             Storage::makeDirectory($storagePath);
             $request->file('featured_image')->storeAs($storagePath.'/',$newName);
             $product->featuredImage = $newName;
@@ -76,7 +76,7 @@ class ProductController extends Controller
             foreach($request->productImages as $key=>$productImage){
 
                 $newName = "productImage.".uniqid().'.'.$productImage->extension();
-                $storagePath = 'public/'.Auth::user()->name.'/'.$request->title.'/main';
+                $storagePath = 'public/product'.'/'.$request->title.'/main';
                 Storage::makeDirectory($storagePath);
                 $productImage->storeAs($storagePath.'/',$newName);
 
@@ -145,11 +145,11 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->discount = $request->discount;
         $product->user_id = Auth::user()->id;
-        Storage::makeDirectory('public/'.Auth::user()->name);
-        Storage::makeDirectory('public/'.Auth::user()->name.'/'.$product->folder);
+        Storage::makeDirectory('public/product');
+        Storage::makeDirectory('public/product'.'/'.$product->folder);
         if($request->hasFile('featured_image')){
             $newName = "featured_image.".uniqid().'.'.$request->file('featured_image')->extension();
-            $storagePath = 'public/'.Auth::user()->name.'/'.$product->folder.'/featured';
+            $storagePath = 'public/product'.'/'.$product->folder.'/featured';
             Storage::makeDirectory($storagePath);
             $request->file('featured_image')->storeAs($storagePath.'/',$newName);
             $product->featuredImage = $newName;
@@ -160,7 +160,7 @@ class ProductController extends Controller
             foreach($request->productImages as $key=>$productImage){
 
                 $newName = "productImage.".uniqid().'.'.$productImage->extension();
-                $storagePath = 'public/'.Auth::user()->name.'/'.$product->folder.'/main';
+                $storagePath = 'public/product'.'/'.$product->folder.'/main';
                 Storage::makeDirectory($storagePath);
                 $productImage->storeAs($storagePath.'/',$newName);
 
@@ -187,7 +187,7 @@ class ProductController extends Controller
         $productName =$product->title;
 
         if(isset($product->featuredImage)){
-            Storage::deleteDirectory('public/'.Auth::user()->name.'/'.$product->folder);
+            Storage::deleteDirectory('public/product'.'/'.$product->folder);
         }
         $product->delete();
         return redirect()->route('product.index')->with('status',$productName . ' was removed');

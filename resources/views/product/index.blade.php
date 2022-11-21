@@ -50,7 +50,7 @@
 
                                        <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}" class="h-12 w-12 rounded-lg object-cover" alt="">
                                        @else
-                                       <img src="{{ asset('storage/'.Auth::user()->name.'/'.$product->folder.'/featured/'.$product->featuredImage) }}" class="h-12 w-12 rounded-lg object-cover" alt="">
+                                       <img src="{{ asset('storage/product'.'/'.$product->folder.'/featured/'.$product->featuredImage) }}" class="h-12 w-12 rounded-lg object-cover" alt="">
 
                                        @endif
                                     </td>

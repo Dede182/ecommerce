@@ -1,5 +1,5 @@
-<div class="flex flex-col space-y-8">
-    <div class="flex jusity-between items-center">
+<div class="flex flex-col space-y-8 ">
+    <div class="flex justify-between items-center w-full">
         <div class="flex flex-col">
             <div class="capitalize font-bold text-xl">
                 Top Save Today
@@ -12,6 +12,12 @@
             </div>
             <p class="text-gray-600 text-xs">Don't miss this opportunity at a special discount just for this week.</p>
         </div>
+
+        <div class="">
+            <button class="text-white w-36 text-xs py-2 mt-4 bg-red-500 hover:bg-red-800 transition rounded-lg">
+               Show All Products <i class="fa-solid fa-arrow-right ml-1 pt-1"></i>
+            </button>
+        </div>
     </div>
 
     <div class="w-full">
@@ -20,15 +26,47 @@
             @foreach ($products as $product)
             <div class="border border-gray-300 product">
                 <div class="flex flex-col py-6">
-                    <div class="flex justify-center mb-2 px-6">
+                    <div
+                    x-data="{ open{{ $product->id }} : false}"
+                    class="flex justify-center mb-2 px-6 relative">
                         @if(is_null($product->featuredImage))
 
-                        <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}" class="h-36 w-full rounded-lg object-cover" alt="">
+                        <img
+                        @mouseover="open{{ $product->id }} =true"
+                        @mouseout="open{{ $product->id }} =false"
+                        src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}" class="h-36 w-full rounded-lg object-cover" alt="">
                         @else
-                        <img src="{{ asset('storage/hhz'.'/'.$product->folder.'/featured/'.$product->featuredImage) }}"
-                        class="h-36 w-full rounded-lg object-cover" alt="">
+                        <img
+                        @mouseover="open{{ $product->id }} =true"
+                        @mouseout="open{{ $product->id }} =false"
+                        src="{{ asset('storage/product'.'/'.$product->folder.'/featured/'.$product->featuredImage) }}"
+                        class="h-36 w-full rounded-lg object-cover hover:scale-110 transition cursor-pointer" alt="">
 
                         @endif
+
+                        <div
+                        x-show="open{{ $product->id }}"
+
+                        x-transition.duration.500ms
+
+                        x-transition.origin.bottom
+                        @mouseover="open{{ $product->id }} =true"
+                        @mouseout="open{{ $product->id }} =false"
+                        class="absolute bg-white w-24 bottom-5 rounded-lg   py-1">
+                            <div class="flex  justify-center px-2">
+                                <a href="{{ route('front.product.show',$product->id) }}"  class="border-r border-black px-1">
+                                    <i class="fa-regular fa-eye"></i>
+
+                                </a>
+                                <a href="#"  class="border-r border-black px-1">
+                                    <i class="fa-regular fa-heart"></i>
+
+                                </a>
+                                <a href="#"  class="px-1">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     {{-- product detail start --}}
                     <div class="flex flex-col px-6 text-xs space-y-2 text-black">
@@ -57,7 +95,9 @@
                                         <?php $rating--; ?>
                                     @endforeach
                                 @else
-
+                                @foreach (range(1, 5) as $i)
+                                <i class="fa fa-star text-yellow-400"></i>
+                                @endforeach
                                 @endif
 
                             </div>

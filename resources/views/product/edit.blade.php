@@ -72,7 +72,7 @@
                                         <div class="">
 
                                                 <img id="editFeaturedImage"
-                                                    src="{{ asset('storage/' . Auth::user()->name . '/' . $product->folder . '/featured/' . $product->featuredImage) }}"
+                                                    src="{{ asset('storage/product'   . '/' . $product->folder . '/featured/' . $product->featuredImage) }}"
                                                     class="h-40 w-40 rounded-lg object-cover" alt="">
 
 
@@ -115,8 +115,8 @@
                                         @foreach ($product->productImages as $key => $pro)
                                             <div class="relative">
                                                 <img id={{ $key }}
-                                                    onclick="mainImage.setAttribute('src','{{ asset('storage/' . Auth::user()->name . '/' . $product->title . '/main/' . $product->productImages[$key]->productImage) }}')"
-                                                    src="{{ asset('storage/' . Auth::user()->name . '/' . $product->folder . '/main/' . $pro->productImage) }}"
+                                                    onclick="mainImage.setAttribute('src','{{ asset('storage/product'   . '/' . $product->title . '/main/' . $product->productImages[$key]->productImage) }}')"
+                                                    src="{{ asset('storage/product'   . '/' . $product->folder . '/main/' . $pro->productImage) }}"
                                                     class="w-20 h-20 object-cover rounded-md cursor-pointer slideImage"
                                                     alt="">
 

@@ -31,4 +31,5 @@ Route::middleware('auth','verified')->group(function(){
 });
 
 Route::get('/front',[FrontController::class,'index'])->name('front');
+Route::get('/front/product/{id}',[FrontController::class,'product'])->name('front.product.show');
 require __DIR__.'/auth.php';

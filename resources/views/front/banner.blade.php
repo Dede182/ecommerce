@@ -17,7 +17,7 @@
                     <p>Vegetables contain many vitamins and minerals that are good for your health.</p>
                 </div>
                 <div class="">
-                    <button class="text-white px-4 py-2 bg-red-500 rounded-lg">
+                    <button class="text-white px-4 py-2 bg-red-500 hover:bg-red-800 transition  rounded-lg">
                         Shop Now
                     </button>
                 </div>

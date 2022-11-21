@@ -23,7 +23,7 @@
             <div class="text-2xl uppercase">Vegetables</div>
             <p class="text-gray-600 text-xs">Super offer to 50% OFF</p>
 
-            <button class="text-white w-24 text-xs py-2 mt-4 bg-red-500 rounded-lg">
+            <button class="text-white w-24 text-xs py-2 mt-4 bg-red-500 rounded-lg hover:bg-red-800 transition ">
                 Shop Now <i class="fa-solid fa-arrow-right ml-1 pt-1"></i>
             </button>
         </div>

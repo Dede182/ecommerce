@@ -1,4 +1,4 @@
-<div class="flex justify-between pb-6">
+<div class="flex justify-between ">
     <div class="flex items-center font-semibold">
 
         <a href="{{ route('dashboard') }}">
@@ -15,7 +15,7 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
     </svg>
 
-    <a href="{{ $firstRoute }}" class="font-Merriweather text-xs">{{ $firstCrumb }}</a>
+    <a href="{{ $firstRoute }}" class="  text-xs">{{ $firstCrumb }}</a>
 
         @endif
 
@@ -27,7 +27,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
 
-            <a class="font-Merriweather text-xs">{{ $secondCrumb }}</a>
+            <a class="  text-xs">{{ $secondCrumb }}</a>
         @endif
 
     </div>

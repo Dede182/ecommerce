@@ -31,7 +31,7 @@ class MbCalculate
        $ratePerStar = 20;
 
        $avgRate = $rate/$ratePerStar;
-        return $avgRate;
+        return number_format($avgRate,1,'.');
 
     }
 }

@@ -6,16 +6,18 @@
             <div class="bg-white w-full rounded-lg px-3 pt-3 pb-10">
                 {{-- breadcrumb --}}
 
-                <x-breadcrumb :first="true" firstRoute="{{ route('product.index') }}" firstCrumb="product"
-                    :second="true" :secondCrumb="$product->title" />
 
+                <div class="mb-2">
+                    <x-breadcrumb :first="true" firstRoute="{{ route('product.index') }}" firstCrumb="product"
+                    :second="true" :secondCrumb="$product->title" />
+                </div>
                 <div class="flex pt-8">
                     <div class="w-[40%]">
                         <div class="flex flex-col space-y-6">
                             <div class="flex px-6">
                                 @if (count($product->productImages) > 0)
                                     <img id="mainImage"
-                                        src="{{ asset('storage/' . Auth::user()->name . '/' . $product->folder . '/main/' . $product->productImages[0]->productImage) }}"
+                                        src="{{ asset('storage/product' . '/' . $product->folder . '/main/' . $product->productImages[0]->productImage) }}"
                                         class="w-80 h-80 object-cover rounded-md mainImage" alt="">
                                 @else
                                     <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
@@ -27,8 +29,8 @@
                                 @if (count($product->productImages) > 0)
                                     @foreach ($product->productImages as $key => $pro)
                                         <img id={{ $key }}
-                                            onclick="mainImage.setAttribute('src','{{ asset('storage/' . Auth::user()->name . '/' . $product->folder . '/main/' . $product->productImages[$key]->productImage) }}')"
-                                            src="{{ asset('storage/' . Auth::user()->name . '/' . $product->folder . '/main/' . $pro->productImage) }}"
+                                            onclick="mainImage.setAttribute('src','{{ asset('storage/product'. '/' . $product->folder . '/main/' . $product->productImages[$key]->productImage) }}')"
+                                            src="{{ asset('storage/product' . '/' . $product->folder . '/main/' . $pro->productImage) }}"
                                             class="w-14 h-14 object-cover rounded-md cursor-pointer slideImage"
                                             alt="">
                                     @endforeach
