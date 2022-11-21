@@ -1,7 +1,7 @@
-<div class="flex space-x-4 ">
-    <div class="w-[70%] relative">
-        <div class="">
-            <img src="{{ asset('bg.jpg') }}" class="w-full h-full rounded-lg " alt="">
+<div class="flex space-x-4">
+    <div class="w-[80%] relative">
+        <div class="w-full h-full">
+            <img src="{{ asset('banner/bg.jpg') }}" class="w-full h-full object-cover rounded-lg " alt="">
         </div>
         <div class="absolute px-10 top-0 flex items-center justify-start w-full h-full">
             <div class="flex flex-col space-y-3">
@@ -24,10 +24,10 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-col space-y-4 ">
-        <div class="relative h-[50%]">
-            <div class="">
-                <img src="{{ asset('2.jpg') }}" class="rounded-lg" alt="">
+    <div class="flex flex-col  space-y-4 ">
+        <div class="relative h-full">
+            <div class="w-full h-full">
+                <img src="{{ asset('banner/2.jpg') }}" class="rounded-lg w-full h-full object-cover" alt="">
             </div>
             <div class="absolute px-2 top-0 flex items-center justify-start w-full h-full">
                 <div class="flex flex-col space-y-3">
@@ -42,20 +42,20 @@
                     <div class="text-xs font-semibold text-gray-500 w-40">
                         <p>We deliver organic vegetables & fruits</p>
                     </div>
-                    <div class="flex items-center">
-                        Shop now ->
+                    <div class="flex items-center cursor-pointer">
+                        Shop now <i class="fa-solid fa-arrow-right ml-2 pt-1"></i>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="relative h-[50%]">
-            <div class="">
-                <img src="{{ asset('3.jpg') }}" class="rounded-lg" alt="">
+        <div class="relative h-full">
+            <div class="w-full h-full">
+                <img src="{{ asset('banner/3.jpg') }}" class="rounded-lg w-full h-full object-cover" alt="">
             </div>
             <div class="absolute px-2 top-0 flex items-center justify-start w-full h-full">
                 <div class="flex flex-col space-y-2">
-                    <div class="flex items-center space-x-4">
+                    <div class="flex items-center  ">
                         <p class="text-uppercae text-3xl font-semibold"><span class="text-green-500">Healthy Food</span></p>
 
                     </div>
@@ -66,8 +66,8 @@
                     <div class="text-xs font-semibold text-gray-500 w-40">
                         <p>We deliver organic vegetables & fruits</p>
                     </div>
-                    <div class="flex items-center">
-                        Shop now ->
+                    <div class="flex items-center cursor-pointer">
+                        Shop now <i class="fa-solid fa-arrow-right ml-2 pt-1"></i>
                     </div>
                 </div>
             </div>

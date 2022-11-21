@@ -15,7 +15,7 @@
     </head>
     <body>
         @include('layouts.navbar')
-        <div class="font-sans text-gray-900 h-[100vh] antialiased">
+        <div class="font-sans text-gray-900 h-[200vh] antialiased ">
             @yield('content')
         </div>
     </body>
