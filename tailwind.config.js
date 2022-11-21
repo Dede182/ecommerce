@@ -18,7 +18,9 @@ module.exports = {
                 Mukta: ['Mukta', 'sans-serif'],
                 Sono: ['Sono', 'sans-serif']
             },
-
+            colors:{
+                greu : '#0da487',
+            }
         },
 
 

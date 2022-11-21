@@ -61,7 +61,7 @@
 
 
                    @guest
-                        <a href="{{ rotue('login') }}">
+                        <a href="{{ route('login') }}">
                         {{ __('Log in') }}</a>
                    @endguest
                 </div>
