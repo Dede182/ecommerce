@@ -15,7 +15,7 @@ class FrontController extends Controller
 
         return view('front.index',compact('categories','products'));
     }
-    public function product(Request $request){
+    public function show(Request $request){
 
         $product =  Product::where('id',"$request->id")
         ->with('category','productImages','reviews')
@@ -24,4 +24,22 @@ class FrontController extends Controller
         return view('front.show',compact('product','latestProduct'));
     }
 
+    public function products(){
+        $categories = Category::latest('id')->with('products')->get();
+        $products = Product::latest('id')->limit(8)->get();
+        $fiveDiscount = Product::whereBetween('discount',[0,5])->get();
+        $tenDiscount = Product::whereBetween('discount',[5,10])->get();
+        $fifteenDiscount = Product::whereBetween('discount',[10,15])->get();
+        $twentyFiveDiscount = Product::whereBetween('discount',[15,25])->get();
+        $lastDiscount = Product::where('discount','>=',25)->get();
+        $Discount = [
+             count($fiveDiscount),
+            count($tenDiscount),
+            count($fifteenDiscount),
+            count($twentyFiveDiscount),
+            count($lastDiscount)
+        ];
+        // return $Discount;
+        return view('front.products.allproduct',compact('categories','products','Discount'));
+    }
 }

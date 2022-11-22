@@ -51,7 +51,7 @@ class MbCalculate
        $totalSingleReview = count($single);
 
        $ratePerstar = ($totalSingleReview / $totalReview) * 100;
-       return  number_format($ratePerstar,1,'.');
+       return  number_format($ratePerstar,0,'.');
     }
 
 

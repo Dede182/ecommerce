@@ -3,30 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreReviewRequest;
 use App\Http\Requests\UpdateReviewRequest;
 
 class ReviewController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -36,26 +19,14 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request)
     {
-        return $request;
+        $review = new Review();
+        $review->reviewStar = $request->rating;
+        $review->description = $request->description;
+        $review->user_id = Auth::user()->id;
+        $review->product_id = $request->product_id;
+        $review->save();
+        return redirect()->back()->with('status','Thanks for reviewing our product!');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Review  $review
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Review $review)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Review  $review
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Review $review)
     {
         //

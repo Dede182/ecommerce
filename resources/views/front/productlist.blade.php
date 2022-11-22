@@ -30,18 +30,21 @@
                     x-data="{ open{{ $product->id }} : false}"
                     class="flex justify-center mb-2 px-6 relative">
                         @if(is_null($product->featuredImage))
-
-                        <img
+                        <a href="{{ route('front.product.show',$product->id) }}">
+                            <img
                         @mouseover="open{{ $product->id }} =true"
                         @mouseout="open{{ $product->id }} =false"
                         src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}" class="h-36 w-full rounded-lg object-cover" alt="">
+                        </a>
+
                         @else
+                        <a href="{{ route('front.product.show',$product->id) }}">
                         <img
                         @mouseover="open{{ $product->id }} =true"
                         @mouseout="open{{ $product->id }} =false"
                         src="{{ asset('storage/product'.'/'.$product->folder.'/featured/'.$product->featuredImage) }}"
                         class="h-36 w-full rounded-lg object-cover hover:scale-110 transition cursor-pointer" alt="">
-
+                    </a>
                         @endif
 
                         <div

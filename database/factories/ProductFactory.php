@@ -22,7 +22,7 @@ class ProductFactory extends Factory
             'title' => fake()->name,
             'price' => fake()->randomFloat($nbMaxDecimals = 2, $min = 2, $max = 3000),
             'stock' => fake()->numberBetween($min = 0, $max = 200),
-            'description' => fake()->text($maxNbChars = 200) ,
+            'description' => fake()->text($maxNbChars = 600) ,
             'discount' => fake()->numberBetween($min = 0, $max = 100),
             'user_id' => User::inRandomOrder()->first(),
             'category_id' => Category::inRandomOrder()->first(),

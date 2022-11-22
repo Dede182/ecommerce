@@ -12,11 +12,22 @@
 
         <!-- Scripts -->
         @vite(['resources/css/front.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
     </head>
     <body>
         @include('layouts.navbar')
-        <div class="font-sans text-gray-900 h-[200vh] antialiased ">
+        <div class="font-sans text-gray-900 h-[200vh] ">
             @yield('content')
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              @if (session('status'))
+                  showToast("{{ session('status') }}")
+              @endif
+
+
+          })
+      </script>
+        @stack('script')
     </body>
 </html>
