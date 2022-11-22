@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="flex justify-between items-center px-28 py-4 bg-gray-100">
+    <div class="flex justify-between items-center px-16 2xl:px-28 bg-gray-100">
         <div class="font-Inter font-bold">
             Register
         </div>

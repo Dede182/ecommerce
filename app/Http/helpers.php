@@ -2,6 +2,7 @@
 namespace App\Helpers;
 
 use App\Models\Product;
+use Illuminate\Support\Arr;
 
 class MbCalculate
 {
@@ -34,6 +35,26 @@ class MbCalculate
         return number_format($avgRate,1,'.');
 
     }
+
+    public static function ratePerStar($productId,$i=null ){
+        $product = Product::where('id',$productId)->with('reviews')->first();
+        $productReviews = $product->reviews;
+        $ReviewsCount =[];
+        foreach($productReviews as $key=>$pro){
+            $ReviewsCount[$key] = $pro->reviewStar;
+        }
+
+        $single = Arr::where($ReviewsCount,function($value,$key) use($i){
+            return $value === $i;
+        });
+       $totalReview = count($ReviewsCount);
+       $totalSingleReview = count($single);
+
+       $ratePerstar = ($totalSingleReview / $totalReview) * 100;
+       return  number_format($ratePerstar,1,'.');
+    }
+
+
 }
 
 

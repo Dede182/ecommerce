@@ -1,7 +1,7 @@
 @extends('front')
 
 @section('content')
-    <div class="flex justify-between items-center px-28 py-8 bg-gray-100 font-Mukta">
+    <div class="flex justify-between items-center px-16 2xl:px-28 py-8 bg-gray-100 font-Mukta">
         <div class="font-Inter font-bold cap">
             {{ $product->title }}
         </div>
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="flex  px-28 py-8">
+    <div class="flex px-16 2xl:px-28 py-8 space-x-6">
         {{-- imgsection start --}}
         <div class="w-[35%]">
             <div class="flex  space-x-6">
@@ -22,21 +22,21 @@
                             <img id={{ $key }}
                                 onclick="mainImage.setAttribute('src','{{ asset('storage/product' . '/' . $product->folder . '/main/' . $product->productImages[$key]->productImage) }}')"
                                 src="{{ asset('storage/product' . '/' . $product->folder . '/main/' . $pro->productImage) }}"
-                                class="w-14 h-16 object-cover border border-gray-200  rounded-md cursor-pointer slideImage"
+                                class="w-16 h-16 object-cover border border-gray-200  rounded-md cursor-pointer slideImage"
                                 alt="">
                         @endforeach
                     @else
                         {{-- if no images  --}}
                         <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                            class="w-14 h-20 object-cover rounded-md" alt="">
+                            class="w-16 h-20 object-cover rounded-md" alt="">
                         <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                            class="w-14 h-20 object-cover rounded-md" alt="">
+                            class="w-16 h-20 object-cover rounded-md" alt="">
                         <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                            class="w-14 h-20 object-cover rounded-md" alt="">
+                            class="w-16 h-20 object-cover rounded-md" alt="">
                         <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                            class="w-14 h-20 object-cover rounded-md" alt="">
+                            class="w-16 h-20 object-cover rounded-md" alt="">
                         <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                            class="w-14 h-20 object-cover rounded-md" alt="">
+                            class="w-16 h-20 object-cover rounded-md" alt="">
                     @endif
 
 
@@ -57,7 +57,7 @@
 
         {{-- img section end --}}
 
-        <div class="w-[65%] flex ">
+        <div class="w-[65%] flex space-x-5 ">
             <div class="w-[100%] ">
                 <div class="flex flex-col">
 
@@ -147,12 +147,48 @@
                     </div>
                 </div>
             </div>
-            <div class="w-[50%] ">hi</div>
+            <div class="w-[60%] ">
+                <div class="flex flex-col">
+                    <div class="w-full py-3 px-3 bg-gray-100 rounded-lg flex flex-col">
+                        <div class="mb-4">
+                            <h3 class=" Category relative w-fit">Latest Products</h3>
+                        </div>
+
+
+                        @foreach ($latestProduct as $pro)
+                        <a href="{{ route('front.product.show',$pro->id) }}" class="flex space-x-4 mb-4">
+                            <div class="w-[40%]">
+                                @if(is_null($pro->featuredImage))
+
+                                <img
+                                src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}" class="h-16 w-full
+                                hover:scale-110 transition
+                                rounded-lg object-cover" alt="">
+                                @else
+                                <img
+
+                                src="{{ asset('storage/product'.'/'.$pro->folder.'/featured/'.$pro->featuredImage) }}"
+                                class="h-16 w-full rounded-lg object-cover hover:scale-110 transition cursor-pointer" alt="">
+
+                                @endif
+                            </div>
+                            <div class="font-bold text-sm flex flex-col w-full  pb-3 border-b">
+                                <p class="text-xs whitespace-pre-line">{{ $pro->title }}</p>
+                                <p class="text-greu text-md font-bold">
+                                    ${{ App\Helpers\MbCalculate::discount($pro->discount, $pro->price) }}</p>
+                            </div>
+                        </a>
+
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 
     <div class="px-28 py-8 w-[85%]">
+        {{ $product->id }}
         <div class="mb-4 border-b pb-2 border-gray-200 dark:border-gray-700">
             <ul class="flex flex-wrap items-center text-sm  text-center" id="myTab"
                 data-tabs-toggle="#myTabContent" role="tablist">
@@ -211,7 +247,10 @@
                 </div>
             </div>
             {{-- review section --}}
-            @include('product.review')
+
+
+                @include('productReview')
+
         </div>
     </div>
 @endsection

@@ -36,7 +36,7 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request)
     {
-        //
+        return $request;
     }
 
     /**

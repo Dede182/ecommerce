@@ -20,6 +20,8 @@ class FrontController extends Controller
         $product =  Product::where('id',"$request->id")
         ->with('category','productImages','reviews')
         ->first();
-        return view('front.show',compact('product'));
+        $latestProduct =Product::latest('id')->limit(4)->get();
+        return view('front.show',compact('product','latestProduct'));
     }
+
 }

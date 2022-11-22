@@ -5,7 +5,7 @@
         <div class="flex flex-col  space-y-4">
             @foreach ($categories as $cata)
             <div class="">
-                <p></p>
+
                 <a href="#" class="link link-underline link-underline-black text-gray-700 text-sm capitalize">{{ $cata->title }}</a>
             </div>
             @endforeach

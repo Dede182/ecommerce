@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\productImageController;
+use App\Http\Controllers\ReviewController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ Route::middleware('auth','verified')->group(function(){
     Route::resource('/category',CategoryController::class);
     Route::resource('/product',ProductController::class);
     Route::delete('/productImage',[productImageController::class,'destroy'])->name('productImage.destroy');
+    Route::post('/review',[ReviewController::class,'store'])->name('review.store');
 });
 
 Route::get('/front',[FrontController::class,'index'])->name('front');

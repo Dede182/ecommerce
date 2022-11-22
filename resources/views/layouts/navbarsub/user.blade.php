@@ -44,6 +44,12 @@
                             </a>
                         </form>
 
+                        <a href="{{ route('dashboard') }}"
+                        class="flex w-full justify-start pl-6 items-center text-sm space-x-2 py-3 hover:bg-slate-200">
+
+                        <i class="fa-solid fa-chart-simple"></i>
+                        <p>Dashboard</p>
+                    </a>
 
                         <form method="POST"
                             class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-slate-200"
@@ -57,12 +63,7 @@
                             </a>
                         </form>
 
-                        <a href="{{ route('dashboard') }}"
-                            class="flex w-full justify-start pl-6 items-center text-sm space-x-2 py-3 hover:bg-slate-200">
 
-                            <i class="fa-solid fa-chart-simple"></i>
-                            <p>Dashboard</p>
-                        </a>
                     @endauth
 
 
