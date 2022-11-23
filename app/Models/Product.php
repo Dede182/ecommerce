@@ -19,9 +19,10 @@ class Product extends Model
     public function scopeCategory($q){
         $q->when(request('category'),function($q){
             $search = request('category');
-            $category = Category::where('title','like',"%$search%");
-            return $category;
-            $q->orWhere('category_id' ,'=',"%$category%");
+
+            $category = Category::where('title','like',"%$search%")->first();
+            $category = $category->id;
+            $q->orWhere('category_id' ,'=',"$category");
 
         });
     }

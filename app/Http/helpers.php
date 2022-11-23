@@ -29,11 +29,20 @@ class MbCalculate
 
        $fullRate = count($ReviewsCount) * 5;
 
-       $rate = ($total / $fullRate) * 100;
-       $ratePerStar = 20;
+       if($total===0){
+        return "";
+        }
+        elseif($fullRate===0){
+            return "";
+        }else{
+            $rate = ($total / $fullRate) * 100;
+            $ratePerStar = 20;
 
-       $avgRate = $rate/$ratePerStar;
-        return number_format($avgRate,1,'.');
+            $avgRate = $rate/$ratePerStar;
+             return number_format($avgRate,1,'.');
+        }
+
+
 
     }
 

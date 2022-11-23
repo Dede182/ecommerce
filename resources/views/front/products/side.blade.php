@@ -110,7 +110,7 @@
                     @foreach (range(1, 5) as $i)
                         <div class="flex justify-between items-center">
                             <div class="flex space-x-5">
-                                <input type="checkbox" name="rating[]" class="checked:text-greu" id="">
+                                <input type="radio" value="{{ $i }}" name="rating" form="filter" class="checked:text-greu" id="">
 
                                 @php
                                     $rating = $i;
@@ -174,13 +174,15 @@
                 <div class="w-full text-gray-800 text-sm flex flex-col space-y-4 pt-3">
 
                     @php
-                    $discount = ["up to 5%","5% - 10%","10% - 15%","15% - 25%","More than 25%"];
+                    $discount = ["5%","10%","20%","30%","40%"];
                       @endphp
                     @foreach (range(1, 5) as $i)
                         <div class="flex justify-between items-center">
                             <div class="flex space-x-3">
-                                <input type="checkbox" name="discount[]" class="checked:text-greu" id="">
-                                <p>{{ $discount[$i-1] }}</p>
+                                <input type="radio" name="discount" form="filter" value="{{ $discount[$i-1] }}"
+                                 class="w-4 h-4 text-green-700 bg-gray-100 border-gray-300 focus:ring-green-700
+                                 focus:ring-2  " id="">
+                                <p>above {{ $discount[$i-1] }}</p>
                             </div>
                            <div class="text-xs text-gray-500 font-semibold">
                             (  {{ $Discount[$i-1]  }} )
@@ -197,6 +199,19 @@
         </div>
 
 
+    </div>
+    <div class="flex justify-between">
+        <div class="">
+            @if (request('category'))
+                <input hidden value={{ request('category') }} name="category" form="filter">
+            @endif
+            <form action="{{ route('front.products') }}" id = "filter">
+
+            </form>
+        </div>
+        <button form ="filter" class ="px-5 py-1 text-sm text-white bg-greu hover:bg-green-700 rounded-sm">
+            Filter
+        </button>
     </div>
 </div>
 @push('script')

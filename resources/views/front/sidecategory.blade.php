@@ -5,8 +5,18 @@
         <div class="flex flex-col  space-y-4">
             @foreach ($categories as $cata)
             <div class="">
+                <form  action = "{{ route('front.products') }}" id ="category{{ $cata->id }}">
 
-                <a href="#" class="link link-underline link-underline-black text-gray-700 text-sm capitalize">{{ $cata->title }}</a>
+                </form>
+                    <input form="category{{ $cata->id }}" hidden value ="{{ $cata->title }}" name="category">
+                    <button form ="category{{ $cata->id }}"
+                        class="link link-underline link-underline-black text-gray-700 text-sm capitalize">
+                        <p>
+                            {{ $cata->title }}
+                        </p>
+
+                    </button>
+
             </div>
             @endforeach
         </div>
