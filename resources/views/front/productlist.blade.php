@@ -14,9 +14,9 @@
         </div>
 
         <div class="">
-            <button class="text-white w-36 text-xs py-2 mt-4 bg-red-500 hover:bg-red-800 transition rounded-lg">
+            <a href="{{ route('front.products') }}" class="text-white w-36 px-3 text-xs py-2 mt-4 bg-red-500 hover:bg-red-800 transition rounded-lg">
                Show All Products <i class="fa-solid fa-arrow-right ml-1 pt-1"></i>
-            </button>
+            </a>
         </div>
     </div>
 

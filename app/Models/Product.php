@@ -16,6 +16,15 @@ class Product extends Model
 
         });
     }
+    public function scopeCategory($q){
+        $q->when(request('category'),function($q){
+            $search = request('category');
+            $category = Category::where('title','like',"%$search%");
+            return $category;
+            $q->orWhere('category_id' ,'=',"%$category%");
+
+        });
+    }
 
     public function category(){
         return $this->belongsTo(Category::class);

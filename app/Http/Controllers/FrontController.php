@@ -24,9 +24,20 @@ class FrontController extends Controller
         return view('front.show',compact('product','latestProduct'));
     }
 
-    public function products(){
+    public function products(Request $request){
         $categories = Category::latest('id')->with('products')->get();
-        $products = Product::latest('id')->limit(8)->get();
+        if($request('category')){
+            return $request;
+        }
+        $products = Product::
+        search()
+        ->category()
+        ->latest('id')
+        ->paginate(9)
+        ->withQueryString()
+        ;
+
+
         $fiveDiscount = Product::whereBetween('discount',[0,5])->get();
         $tenDiscount = Product::whereBetween('discount',[5,10])->get();
         $fifteenDiscount = Product::whereBetween('discount',[10,15])->get();

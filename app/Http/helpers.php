@@ -26,6 +26,7 @@ class MbCalculate
        $total = array_reduce($ReviewsCount,function($pre,$next){
         return $pre += $next;
        });
+
        $fullRate = count($ReviewsCount) * 5;
 
        $rate = ($total / $fullRate) * 100;

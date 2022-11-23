@@ -8,7 +8,7 @@
         <x-breadcrumb :first="true" firstRoute="{{ route('front') }}" firstCrumb="Shop" />
     </div>
 </div>
-<div class="px-16 2xl:px-28 selection:h-[400vh] relative">
+<div class="px-16 2xl:px-28 h-fit pb-20 relative">
     {{--  --}}
     <div class="flex flex-col font-Mukta ">
         <div class="">
@@ -18,8 +18,8 @@
             <div class="w-[30%] lg:w-[20%]">
                 @include('front.products.side')
             </div>
-            <div class="w-[70%] lg:w-[80%]">
-sd
+            <div class="w-[70%]  lg:w-[80%]">
+                @include('front.products.itemList')
             </div>
         </div>
     </div>

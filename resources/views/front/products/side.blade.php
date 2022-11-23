@@ -25,12 +25,17 @@
                 <div class="flex flex-col pt-5">
                     <div class="flex flex-col space-y-2 h-[200px]    overflow-y-scroll">
                         @foreach ($categories as $cata)
-                            <a href="#" class="flex capitalize justify-between space-y-2 text-gray-600">
+                        <form  action = "{{ route('front.products') }}" id ="category{{ $cata->id }}">
+
+                        </form>
+                            <input form="category{{ $cata->id }}" hidden value ="{{ $cata->title }}" name="category">
+                            <button form ="category{{ $cata->id }}" href="#" class="flex capitalize justify-between space-y-2 text-gray-600">
                                 <p>
                                     {{ $cata->title }}
                                 </p>
                                 <span class="pr-2">({{ count($cata->products) }})</span>
-                            </a>
+                            </button>
+
                         @endforeach
                     </div>
                 </div>

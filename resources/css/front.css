@@ -3,6 +3,32 @@
 @tailwind utilities;
 
 
+.pagination .page-item.active .page-link {
+    background-color: #0da487!important;
+    border-color: white;
+    color: #ffffff;
+    border: none!important;
+    border-radius: 5px;
+    padding:7px 16px;
+}
+.pagination .page-item .page-link {
+    background-color: white!important;
+    border-color: white;
+    color: #000;
+    padding:7px 16px;
+
+
+}
+.pagination{
+       border-color: white;
+
+
+}
+.page-item{
+       border-color: white;
+
+
+}
 .subbanner::before {
     content: "";
     top: 0;

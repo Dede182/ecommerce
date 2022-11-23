@@ -2,6 +2,8 @@
     {{-- Review form start --}}
 
     <div class="flex items-start space-x-4">
+
+        @if (count($product->reviews) > 0)
         <div class="flex w-[45%] flex-col justify-center">
             <h3>Customer Reviews</h3>
             <div class="flex items-center mt-3">
@@ -28,7 +30,9 @@
                     @endforeach
                 @endif
                 <div class="flex items-center ml-4 pt-1 text-xs">
-                    <p>{{ App\Helpers\MbCalculate::review($product->id) }} &nbsp; </p> <span> Out of 5</span>
+                    @if (count($product->reviews) > 0)
+                        <p>{{ App\Helpers\MbCalculate::review($product->id) }} &nbsp; </p> <span> Out of 5</span>
+                    @endif
                 </div>
             </div>
 
@@ -40,17 +44,23 @@
                             star</span>
                         <div class="w-72 lg:w-96 h-4 mx-4 bg-gray-200 rounded dark:bg-gray-700 ">
                             <div class="h-4 bg-greu rounded relative"
-                                style="width:   {{ App\Helpers\MbCalculate::ratePerStar($product->id, $i) }}%">
+                                style="width:
+
+                    {{ App\Helpers\MbCalculate::ratePerStar($product->id, $i) }}%">
+
                                 <span class="text-xs font-medium text-white pl-4 absolute w-full flex justify-center">
-                                    {{ App\Helpers\MbCalculate::ratePerStar($product->id, $i) }}%</span>
+                    @if (count($product->reviews) > 0)
+
+                                    {{ App\Helpers\MbCalculate::ratePerStar($product->id, $i) }}
+                                    @endif%</span>
 
                             </div>
                         </div>
                     </div>
                 @endforeach
-
             </div>
         </div>
+        @endif
         <div class="form w-full flex flex-col pt-3">
             <h3 class="text-sm font-bold text-gray-700">
                 Add a review
@@ -61,7 +71,7 @@
 
 
                     <div class="flex flex-wrap">
-                        @foreach (range(1,5) as $i)
+                        @foreach (range(1, 5) as $i)
                         <div class="flex items-center mr-4">
                             <input id="yellow-radio" type="radio" value="{{ $i }}" name="rating"
                                 class="w-4 h-4 text-yellow-300 bg-gray-100 border-gray-300 focus:ring-yellow-300
@@ -103,72 +113,75 @@
                 </path>
             </svg>
             @if (count($product->reviews) > 0)
-                ( {{ App\Helpers\MbCalculate::review($product->id) }})
-            @endif
+                ( {{ App\Helpers\MbCalculate::review($product->id) }}) @endif
         </p>
     </div>
     {{-- review header end --}}
 
     {{-- review body start --}}
-    <div class="cmt-section py-0 pb-6 px-6 bg-gray-100 rounded-lg  max-h-[600px] overflow-y-scroll ">
+    <div class="cmt-section
+                                py-0 pb-6 px-6 bg-gray-100 rounded-lg max-h-[600px] overflow-y-scroll ">
         <div class="comments-container relative pt-3  ">
-            @forelse ($product->reviews as $review)
-                <div class="comment-container  shadow-md  bg-white rounded-xl flex mt-4">
+             @forelse ($product->reviews as $review)
+                                <div class="comment-container  shadow-md  bg-white rounded-xl flex mt-4">
 
-                    <div class="flex px-5 py-6 w-full items-start">
-                        <a href="#" class="flex-none">
-                            <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1"
-                                class="w-14 h-14 rounded-xl object-cover" alt="">
+                                    <div class="flex px-5 py-6 w-full items-start">
+                                        <a href="#" class="flex-none">
+                                            <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1"
+                                                class="w-14 h-14 rounded-xl object-cover" alt="">
 
-                        </a>
+                                        </a>
 
-                        <div class="mx-4  w-full">
-                            <div class="">
-                                <div class="text-gray-600  line-clamp-3 text-sm w-full">{{ $review->description }}
-                                </div>
-                                <div class="flex items-center w-full  justify-between mt-6">
-                                    <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
-                                        <div class="font-bold text-gray-900">
-                                            {{ App\Models\User::find($review->user_id)->name }}
+                                        <div class="mx-4  w-full">
+                                            <div class="">
+                                                <div class="text-gray-600  line-clamp-3 text-sm w-full">
+                                                    {{ $review->description }}
+                                                </div>
+                                                <div class="flex items-center w-full  justify-between mt-6">
+                                                    <div
+                                                        class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
+                                                        <div class="font-bold text-gray-900">
+                                                            {{ App\Models\User::find($review->user_id)->name }}
+                                                        </div>
+                                                        <div>&bull;</div>
+                                                        <div>{{ $review->created_at->diffForHumans() }}</div>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        @php
+                                                            $rating = $review->reviewStar;
+                                                        @endphp
+
+                                                        @foreach (range(1, 5) as $i)
+                                                            @if ($rating > 0)
+                                                                @if ($rating > 0.5)
+                                                                    <i class="fa fa-star text-yellow-400"></i>
+                                                                @else
+                                                                    <i
+                                                                        class="fa fa-star-half-stroke text-yellow-400"></i>
+                                                                @endif
+                                                            @else
+                                                                <i class="fa  fa-star text-gray-300"></i>
+                                                            @endif
+                                                            <?php $rating--; ?>
+                                                        @endforeach
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
-                                        <div>&bull;</div>
-                                        <div>{{ $review->created_at->diffForHumans() }}</div>
-                                    </div>
-                                    <div class="flex items-center">
-                                        @php
-                                            $rating = $review->reviewStar;
-                                        @endphp
 
-                                        @foreach (range(1, 5) as $i)
-                                            @if ($rating > 0)
-                                                @if ($rating > 0.5)
-                                                    <i class="fa fa-star text-yellow-400"></i>
-                                                @else
-                                                    <i class="fa fa-star-half-stroke text-yellow-400"></i>
-                                                @endif
-                                            @else
-                                                <i class="fa  fa-star text-gray-300"></i>
-                                            @endif
-                                            <?php $rating--; ?>
-                                        @endforeach
 
                                     </div>
                                 </div>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                </div>
 
 
 
-            @empty
-                <p>There is no reviews with this product</p>
-            @endforelse
+                            @empty
+                                <p>There is no reviews with this product</p>
+                @endforelse
+            </div>
         </div>
-    </div>
 
-    {{-- review body end --}}
-</div>
+        {{-- review body end --}}
+    </div>

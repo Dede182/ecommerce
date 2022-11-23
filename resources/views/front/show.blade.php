@@ -6,7 +6,7 @@
             {{ $product->title }}
         </div>
         <div class="flex items-center capitalize">
-            <x-breadcrumb :first="true" firstRoute="{{ route('product.index') }}" firstCrumb="product" :second="true"
+            <x-breadcrumb :first="true" firstRoute="{{ route('front') }}" firstCrumb="product" :second="true"
                 :secondCrumb="$product->title" />
         </div>
     </div>
@@ -73,7 +73,7 @@
                                 <div class="">
                                     <h3 class="text-3xl font-bold capitalize">
                                         {{ $product->title }}
-                                        {{ $product->title }}
+
                                     </h3>
                                 </div>
                                 <div class="flex justify-between items-center">
@@ -91,27 +91,27 @@
 
                                     <div class="flex items-center pt-2">
                                         @if (count($product->reviews) > 0)
-                                            @php
-                                                $rating = App\Helpers\MbCalculate::review($product->id);
-                                            @endphp
+                                        @php
+                                            $rating = App\Helpers\MbCalculate::review($product->id);
+                                        @endphp
 
-                                            @foreach (range(1, 5) as $i)
-                                                @if ($rating > 0)
-                                                    @if ($rating > 0.5)
-                                                        <i class="fa fa-star text-yellow-400"></i>
-                                                    @else
-                                                        <i class="fa fa-star-half-stroke text-yellow-400"></i>
-                                                    @endif
+                                        @foreach (range(1, 5) as $i)
+                                            @if ($rating > 0)
+                                                @if ($rating > 0.5)
+                                                    <i class="fa fa-star text-yellow-400"></i>
                                                 @else
-                                                    <i class="fa  fa-star text-gray-300"></i>
+                                                    <i class="fa fa-star-half-stroke text-yellow-400"></i>
                                                 @endif
-                                                <?php $rating--; ?>
-                                            @endforeach
-                                        @else
-                                            @foreach (range(1, 5) as $i)
-                                                <i class="fa fa-star text-yellow-400"></i>
-                                            @endforeach
-                                        @endif
+                                            @else
+                                                <i class="fa  fa-star text-gray-300"></i>
+                                            @endif
+                                            <?php $rating--; ?>
+                                        @endforeach
+                                    @else
+                                        @foreach (range(1, 5) as $i)
+                                            <i class="fa fa-star text-yellow-400"></i>
+                                        @endforeach
+                                    @endif
 
                                     </div>
                                 </div>
@@ -249,6 +249,7 @@
                             <div class="font-bold text-sm flex flex-col w-full  pb-3 border-b">
                                 <p class="text-xs whitespace-pre-line">{{ $pro->title }}</p>
                                 <p class="text-greu text-md font-bold">
+
                                     ${{ App\Helpers\MbCalculate::discount($pro->discount, $pro->price) }}</p>
                             </div>
                         </a>
