@@ -42,7 +42,7 @@ class FrontController extends Controller
                 }
            }
         }
-        return $idsOverReview;
+        // return $idsOverReview;
 
 
         // return $request;
@@ -77,19 +77,39 @@ class FrontController extends Controller
                 break;
             };
         })
+        ->when(request('pricing'),function($q){
+
+            $price = request('pricing');
+            switch($price){
+                case '$500':
+                    $q->where('price','<','500');
+                    break;
+            case '$500 & $1000':
+                $q->whereBetween('price',[500,1000]);
+                break;
+            case '$1000 & $2000':
+                $q->whereBetween('price',[1000,2000]);
+                break;
+            case '$2000':
+                $q->where('price','>=','2000');
+                break;
+
+            };
+        })
+        ->latest('id')
         ->with('reviews')
-        ->paginate(10)->withQueryString();
+        ->paginate(9)->withQueryString();
 
-        return $products;
+        // return $products;
 
 
-        return ProductResource::collection($products);
+        // return ProductResource::collection($products);
 
-        $five = Product::whereBetween('discount',[0,5])->get();
-        $ten = Product::whereBetween('discount',[5,10])->get();
-        $twenty = Product::whereBetween('discount',[10,15])->get();
-        $thirty = Product::whereBetween('discount',[15,25])->get();
-        $fourty = Product::where('discount','>=',25)->get();
+        $five = Product::where('discount','>','5')->get();
+        $ten = Product::where('discount','>','10')->get();
+        $twenty = Product::where('discount','>','20')->get();
+        $thirty = Product::where('discount','>','30')->get();
+        $fourty = Product::where('discount','>','40')->get();
         $Discount = [
              count($five),
             count($ten),

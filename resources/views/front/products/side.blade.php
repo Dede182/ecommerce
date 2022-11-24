@@ -44,7 +44,7 @@
         </div>
     </div>
 {{-- Price --}}
-    <div class="">
+    {{-- <div class="">
         <div id="accordion-collapse" data-accordion="collapse" class="w-full">
             <h2 id="accordion-collapse-heading-2" class=" !flex !items-center  !justify-between w-full">
                 <div class="flex items-center space-x-3">
@@ -80,13 +80,13 @@
         </div>
 
 
-    </div>
-{{--  Rating--}}
+    </div> --}}
+{{--  Pricing--}}
     <div class="">
         <div id="accordion-collapse" data-accordion="collapse" class="w-full">
             <h2 id="accordion-collapse-heading-3" class=" !flex !items-center  !justify-between w-full">
                 <div class="flex items-center space-x-3">
-                    <h3 class=" Category relative w-fit">Rating</h3>
+                    <h3 class=" Category relative w-fit">Pricing</h3>
                 </div>
 
 
@@ -105,34 +105,28 @@
             <div id="accordion-collapse-body-3" class=" mt-3 w-full transition"
                 aria-labelledby="accordion-collapse-heading-1">
 
-                <div class="w-full text-gray-500 text-sm flex flex-col space-y-4 pt-3">
+                <div class="w-full text-gray-800 text-sm flex flex-col space-y-4 pt-3">
 
-                    @foreach (range(1, 5) as $i)
+                    @php
+                    $prices = ["$500","$500 & $1000","$1000 & $2000","$2000" ];
+                      @endphp
+                    @foreach (range(1, 4) as $i)
                         <div class="flex justify-between items-center">
-                            <div class="flex space-x-5">
-                                <input type="radio" value="{{ $i }}" name="rating" form="filter" class="checked:text-greu" id="">
+                            <div class="flex space-x-3">
+                                <input type="radio" name="pricing" form="filter" value="{{ $prices[$i-1] }}"
+                                 class="w-4 h-4 text-green-700 bg-gray-100 border-gray-300 focus:ring-green-700
+                                 focus:ring-2  " id="">
+                                 @if ($loop->first)
+                                <p>Under {{ $prices[$i-1] }}</p>
+                                @elseif ($loop->last)
+                                <p>Above {{ $prices[$i-1] }}</p>
+                                @else
+                                <p>Between {{ $prices[$i-1] }}</p>
 
-                                @php
-                                    $rating = $i;
-                                @endphp
-                                <div class="text-xs">
-                                    @foreach (range(1, 5) as $a)
-                                        @if ($rating > 0)
-                                            @if ($rating > 0.5)
-                                                <i class="fa fa-star text-yellow-400"></i>
-                                            @else
-                                                <i class="fa fa-star-half-stroke text-yellow-400"></i>
-                                            @endif
-                                        @else
-                                            <i class="fa  fa-star text-gray-300"></i>
-                                        @endif
-                                        <?php $rating--; ?>
-                                    @endforeach
-                                </div>
+                                 @endif
+
                             </div>
-                           <div class="text-xs text-gray-500 font-semibold">
-                            ({{ $i }} Star)
-                           </div>
+
 
                         </div>
                     @endforeach

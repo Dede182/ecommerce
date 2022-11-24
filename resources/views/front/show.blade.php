@@ -124,11 +124,15 @@
                             </div>
 
                             <div class="flex flex-col mt-4 pb-3 border-b">
-                                <div class="flex">
+                                <div class="flex space-x-4">
                                     <div class="w-40">
-
+                                        <button class="bg-greu text-white w-full py-2
+                                        transition
+                                        rounded-lg hover:bg-green-700">
+                                            Buy Now
+                                        </button>
                                     </div>
-                                    <button class="bg-gray-900 text-white w-full rounded-lg py-2">
+                                    <button class="bg-gray-900 hover:bg-gray-700 transition text-white w-full rounded-lg py-2">
                                         Add to Cart
                                     </button>
                                 </div>

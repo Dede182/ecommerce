@@ -14,31 +14,42 @@
             </div>
 
             <div class="flex space-x-4 ">
-                @if (request('category') || request('discount'))
+                @if (request('category') || request('discount') || request('pricing'))
                     <p class="flex whitespace-nowrap">Filters : </p>
-                    @if (request('category'))
+                    @if(request('category'))
                         <div
                             class="px-3 py-1 rounded-lg bg-gray-100 text-sm flex items-center justify-center space-x-4">
                             <p> {{ request('category') }}</p>
-                            <a href="{{ route('front.products') }}">
+                            <a href="{{ route('front.products', request()->except('category'))  }}">
                                 <i class="fa-solid fa-xmark text-gray-700 text-xs cursor-pointer"></i>
                             </a>
                         </div>
                     @endif
 
 
-                    @if (request('discount'))
+                    @if(request('discount'))
 
                             <div
                                 class="px-3 py-1 rounded-lg bg-gray-100 text-sm flex items-center justify-center space-x-4">
                                 <p class="flex items-center text-sm whitespace-nowrap"> {{ request('discount') }} OFF</p>
-                                <a href="{{ route('front.products') }}">
+                                <a href="{{ route('front.products', request()->except('discount'))  }}">
                                     <i class="fa-solid fa-xmark text-gray-700 text-xs cursor-pointer"></i>
                                 </a>
                             </div>
 
                     @endif
 
+                     @if(request('pricing'))
+
+                            <div
+                                class="px-3 py-1 rounded-lg bg-gray-100 text-sm flex items-center justify-center space-x-4">
+                                <p class="flex items-center text-sm whitespace-nowrap"> {{ request('pricing') }}</p>
+                                <a href="{{ route('front.products', request()->except('pricing'))  }}">
+                                    <i class="fa-solid fa-xmark text-gray-700 text-xs cursor-pointer"></i>
+                                </a>
+                            </div>
+
+                    @endif
 
                 @endif
 
