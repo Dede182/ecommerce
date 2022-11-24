@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreCartRequest;
-use App\Http\Requests\UpdateCartRequest;
-use App\Models\User;
+use App\Models\CartProducts;
+use App\Http\Requests\StoreCartProductsRequest;
+use App\Http\Requests\UpdateCartProductsRequest;
 
-class CartController extends Controller
+class CartProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +15,7 @@ class CartController extends Controller
      */
     public function index()
     {
-       $carts = Cart::where('user_id',Auth::user()->id)->first();
-        $carts = $carts->cartproducts;
-    //    return $carts;
-       return view('front.cart.index',compact('carts'));
+        //
     }
 
     /**
@@ -36,10 +31,10 @@ class CartController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCartRequest  $request
+     * @param  \App\Http\Requests\StoreCartProductsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCartRequest $request)
+    public function store(StoreCartProductsRequest $request)
     {
         //
     }
@@ -47,10 +42,10 @@ class CartController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cart  $cart
+     * @param  \App\Models\CartProducts  $cartProducts
      * @return \Illuminate\Http\Response
      */
-    public function show(Cart $cart)
+    public function show(CartProducts $cartProducts)
     {
         //
     }
@@ -58,10 +53,10 @@ class CartController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cart  $cart
+     * @param  \App\Models\CartProducts  $cartProducts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cart $cart)
+    public function edit(CartProducts $cartProducts)
     {
         //
     }
@@ -69,11 +64,11 @@ class CartController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCartRequest  $request
-     * @param  \App\Models\Cart  $cart
+     * @param  \App\Http\Requests\UpdateCartProductsRequest  $request
+     * @param  \App\Models\CartProducts  $cartProducts
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCartRequest $request, Cart $cart)
+    public function update(UpdateCartProductsRequest $request, CartProducts $cartProducts)
     {
         //
     }
@@ -81,10 +76,10 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cart  $cart
+     * @param  \App\Models\CartProducts  $cartProducts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy(CartProducts $cartProducts)
     {
         //
     }

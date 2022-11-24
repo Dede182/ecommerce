@@ -9,7 +9,11 @@ module.exports = {
     ],
 
     theme: {
-
+        colors:{
+            'gray':{
+                100 : "#fff"
+            }
+        },
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
@@ -18,8 +22,12 @@ module.exports = {
                 Mukta: ['Mukta', 'sans-serif'],
                 Sono: ['Sono', 'sans-serif']
             },
+
             colors:{
                 greu : '#0da487',
+                grau :{
+                    100 : "#f8f8f8"
+                }
             }
         },
 

@@ -120,7 +120,7 @@
 
     {{-- review body start --}}
     <div class="cmt-section
-                                py-0 pb-6 px-6 bg-gray-100 rounded-lg max-h-[600px] overflow-y-scroll ">
+                                py-0 pb-6 px-6 bg-grau-100 rounded-lg max-h-[600px] overflow-y-scroll ">
         <div class="comments-container relative pt-3  ">
              @forelse ($product->reviews as $review)
                                 <div class="comment-container  shadow-md  bg-white rounded-xl flex mt-4">

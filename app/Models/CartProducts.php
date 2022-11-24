@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cart extends Model
+class CartProducts extends Model
 {
     use HasFactory;
-
-    protected $with = ['cartproducts'];
-
-    public function cartproducts(){
-        return $this->hasMany(CartProducts::class);
+    protected $with = ['product'];
+    public function product(){
+        return $this->belongsTo(Product::class);
     }
 }

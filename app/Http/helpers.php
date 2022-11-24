@@ -10,8 +10,8 @@ class MbCalculate
         $total ="" ;
         $discountPercentage = $discount  / 100;
         $discountPrice = $discountPercentage * $originalPrice;
-        $total = $originalPrice - $discountPrice;
-        return number_format($total,1,'.') ;
+        (int)$total = $originalPrice - $discountPrice;
+        return round($total) ;
     }
 
     public static function review($productId){

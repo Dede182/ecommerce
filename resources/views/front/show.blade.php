@@ -1,7 +1,7 @@
 @extends('front')
 
 @section('content')
-    <div class="flex justify-between items-center px-16 2xl:px-28 py-8 bg-gray-100 font-Mukta">
+    <div class="flex justify-between items-center px-16 2xl:px-28 py-8 bg-grau-100 font-Mukta">
         <div class="font-Inter font-bold cap">
             {{ $product->title }}
         </div>
@@ -229,7 +229,7 @@
         </div>
         <div class="w-[20%] py-8">
             <div class="flex flex-col">
-                <div class="w-full py-3 px-3 bg-gray-100 rounded-lg flex flex-col">
+                <div class="w-full py-3 px-3 bg-grau-100 rounded-lg flex flex-col">
                     <div class="mb-4">
                         <h3 class=" Category relative w-fit">Latest Products</h3>
                     </div>

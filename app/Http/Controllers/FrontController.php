@@ -80,7 +80,7 @@ class FrontController extends Controller
 
             };
         })
-        ->when(request('sort',function($q){
+        ->when(request('sort'),function($q){
             $sort = request('sort');
             switch($sort){
                 case 'LTH':
@@ -90,7 +90,7 @@ class FrontController extends Controller
                 $q->orderBy('price','desc');
                 break;
             };
-        }))
+        })
         ->latest('id')
         ->with('reviews')
         ->paginate(9)->withQueryString();

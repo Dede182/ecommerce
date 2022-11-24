@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontController;
@@ -30,6 +31,7 @@ Route::middleware('auth','verified')->group(function(){
     Route::resource('/product',ProductController::class);
     Route::delete('/productImage',[productImageController::class,'destroy'])->name('productImage.destroy');
     Route::post('/review',[ReviewController::class,'store'])->name('review.store');
+    Route::get('/cart',[CartController::class,'index'])->name('cart.index');
 });
 
 Route::get('/front',[FrontController::class,'index'])->name('front');

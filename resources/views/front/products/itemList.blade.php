@@ -85,7 +85,7 @@
 
 
         @foreach ($products as $product)
-            <div class="flex flex-col w-68 bg-gray-100 py-5 rounded-lg">
+            <div class="flex flex-col w-68 bg-grau-100 py-5 rounded-lg">
 
 
                 <div x-data="{ open{{ $product->id }}: false }" class="flex justify-center mb-2 px-6 relative">
@@ -187,7 +187,7 @@
 
 
         @foreach ($products as $product)
-            <div class="flex w-68 bg-gray-100 py-5 rounded-lg gap-x-4">
+            <div class="flex w-68 bg-grau-100 py-5 rounded-lg gap-x-4">
 
 
                 <div x-data="{ open{{ $product->id }}: false }" class="flex justify-center w-[40%] mb-2 px-6 relative">

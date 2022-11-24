@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             ProductSeeder::class,
             ReviewSeeder::class,
+            CartSeeder::class,
+            CartProductsSeeder::class,
         ]);
         $file = new FileSystem;
         $file->cleanDirectory('storage/app/public/');

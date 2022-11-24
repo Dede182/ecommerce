@@ -1,6 +1,6 @@
 @extends('front')
 @section('content')
-<div class="flex justify-between items-center px-16 2xl:px-28 py-8 bg-gray-100 font-Mukta">
+<div class="flex justify-between items-center px-16 2xl:px-28 py-8 bg-grau-100 font-Mukta">
     <div class="font-Inter font-bold cap">
         Shop List
     </div>
