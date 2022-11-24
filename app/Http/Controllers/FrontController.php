@@ -29,22 +29,6 @@ class FrontController extends Controller
     public function products(Request $request){
         $categories = Category::latest('id')->with('products')->get();
 
-        $idsOverReview = [];
-        if(request('rating')){
-            $pro = Product::all();
-           $pro= ProductResource::collection($pro);
-            return $pro;
-           foreach($pro as $key=>$p){
-            // return $p;
-                if($p->rating >= request('id')){
-                    // return $p;
-                    array_push($idsOverReview,$p);
-                }
-           }
-        }
-        // return $idsOverReview;
-
-
         // return $request;
         $products = Product::
         search()
@@ -96,6 +80,17 @@ class FrontController extends Controller
 
             };
         })
+        ->when(request('sort',function($q){
+            $sort = request('sort');
+            switch($sort){
+                case 'LTH':
+                    $q->orderBy('price','asc');
+                    break;
+            case 'HTL':
+                $q->orderBy('price','desc');
+                break;
+            };
+        }))
         ->latest('id')
         ->with('reviews')
         ->paginate(9)->withQueryString();

@@ -3,13 +3,12 @@
         <div class="flex items-center space-x-4">
             <div class="flex items-center ">
                 <p class="whitespace-nowrap text-gray-700 text-sm">Sort By &nbsp;:&nbsp; </p>
-                <select id="countries"
+
+                <select id="selectSort" name="sort" form = "filter"
                     class="border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-100 ">
-                    <option selected>Popularity</option>
-                    <option value="US">Low - High Price</option>
-                    <option value="CA">High - Low Price</option>
-                    <option value="FR">Average Rating</option>
-                    <option value="DE">Germany</option>
+
+                    <option name="sort" value="LTH">Low - High Price</option>
+                    <option name="sort" value="HTL">High - Low Price</option>
                 </select>
             </div>
 
@@ -51,6 +50,17 @@
 
                     @endif
 
+                    @if(request('sort'))
+
+                    <div
+                        class="px-3 py-1 rounded-lg bg-gray-100 text-sm flex items-center justify-center space-x-4">
+                        <p class="flex items-center text-sm whitespace-nowrap"> {{ request('sort') }}</p>
+                        <a href="{{ route('front.products', request()->except('sort'))  }}">
+                            <i class="fa-solid fa-xmark text-gray-700 text-xs cursor-pointer"></i>
+                        </a>
+                    </div>
+
+            @endif
                 @endif
 
             </div>
@@ -274,3 +284,14 @@
         </div>
     </div>
 </div>
+@push('script')
+<script>
+    const filter = document.getElementById('filter')
+    const selectSort = document.getElementById('selectSort');
+
+    selectSort.addEventListener('change',()=>{
+        filter.submit();
+    })
+</script>
+
+@endpush
