@@ -28,9 +28,9 @@
             Process To CheckOut
            </button>
 
-           <button class=" bg-gray-300 hover:bg-gray-400 w-full py-2 rounded-md mt-4">
+           <a href="{{ route('front.products') }}" class=" flex items-center justify-center bg-gray-300 hover:bg-gray-400 w-full py-2 rounded-md mt-4">
             <i class="fa-solid fa-arrow-left text-xs"></i> Return To Shopping
-           </button>
+           </a>
         </div>
 
     </div>

@@ -25,17 +25,18 @@
                 <div class="flex flex-col pt-5">
                     <div class="flex flex-col space-y-2 h-[200px]    overflow-y-scroll">
                         @foreach ($categories as $cata)
-                        <form  action = "{{ route('front.products') }}" id ="category{{ $cata->id }}">
+                            <form action="{{ route('front.products') }}" id="category{{ $cata->id }}">
 
-                        </form>
-                            <input form="category{{ $cata->id }}" hidden value ="{{ $cata->title }}" name="category">
-                            <button form ="category{{ $cata->id }}" href="#" class="flex capitalize justify-between space-y-2 text-gray-600">
+                            </form>
+                            <input form="category{{ $cata->id }}" hidden value="{{ $cata->title }}"
+                                name="category">
+                            <button form="category{{ $cata->id }}" href="#"
+                                class="flex capitalize justify-between space-y-2 text-gray-600">
                                 <p>
                                     {{ $cata->title }}
                                 </p>
                                 <span class="pr-2">({{ count($cata->products) }})</span>
                             </button>
-
                         @endforeach
                     </div>
                 </div>
@@ -43,7 +44,7 @@
 
         </div>
     </div>
-{{-- Price --}}
+    {{-- Price --}}
     {{-- <div class="">
         <div id="accordion-collapse" data-accordion="collapse" class="w-full">
             <h2 id="accordion-collapse-heading-2" class=" !flex !items-center  !justify-between w-full">
@@ -81,7 +82,7 @@
 
 
     </div> --}}
-{{--  Pricing--}}
+    {{--  Pricing --}}
     <div class="">
         <div id="accordion-collapse" data-accordion="collapse" class="w-full">
             <h2 id="accordion-collapse-heading-3" class=" !flex !items-center  !justify-between w-full">
@@ -108,22 +109,31 @@
                 <div class="w-full text-gray-800 text-sm flex flex-col space-y-4 pt-3">
 
                     @php
-                    $prices = ["$500","$500 & $1000","$1000 & $2000","$2000" ];
-                      @endphp
+                        $prices = ["$500", "$500 & $1000", "$1000 & $2000", "$2000"];
+                        if(request('pricing')){
+                            $re = request('pricing');
+                        }
+                    @endphp
                     @foreach (range(1, 4) as $i)
                         <div class="flex justify-between items-center">
                             <div class="flex space-x-3">
-                                <input type="radio" name="pricing" form="filter" value="{{ $prices[$i-1] }}"
-                                 class="w-4 h-4 text-green-700 bg-gray-100 border-gray-300 focus:ring-green-700
-                                 focus:ring-2  " id="">
-                                 @if ($loop->first)
-                                <p>Under {{ $prices[$i-1] }}</p>
-                                @elseif ($loop->last)
-                                <p>Above {{ $prices[$i-1] }}</p>
-                                @else
-                                <p>Between {{ $prices[$i-1] }}</p>
+                                <input type="radio" name="pricing" form="filter" value="{{ $prices[$i - 1] }}"
+                                    class="w-4 h-4 text-green-700 bg-gray-100 border-gray-300 focus:ring-green-700
+                                 focus:ring-2  "
+                                 @if(request('pricing'))
 
+                                    @if($re === $prices[$i-1])
+                                        checked
+                                    @endif
                                  @endif
+                                 >
+                                @if ($loop->first)
+                                    <p>Under {{ $prices[$i - 1] }}</p>
+                                @elseif ($loop->last)
+                                    <p>Above {{ $prices[$i - 1] }}</p>
+                                @else
+                                    <p>Between {{ $prices[$i - 1] }}</p>
+                                @endif
 
                             </div>
 
@@ -168,19 +178,32 @@
                 <div class="w-full text-gray-800 text-sm flex flex-col space-y-4 pt-3">
 
                     @php
-                    $discount = ["5%","10%","20%","30%","40%"];
-                      @endphp
+                        $discount = ['5%', '10%', '20%', '30%', '40%'];
+                        if (request('discount')) {
+                            $re = request('discount');
+                        }
+
+                    @endphp
+
                     @foreach (range(1, 5) as $i)
                         <div class="flex justify-between items-center">
                             <div class="flex space-x-3">
-                                <input type="radio" name="discount" form="filter" value="{{ $discount[$i-1] }}"
-                                 class="w-4 h-4 text-green-700 bg-gray-100 border-gray-300 focus:ring-green-700
-                                 focus:ring-2  " id="">
-                                <p>above {{ $discount[$i-1] }}</p>
+                                <input type="radio"
+                                    @if (request('discount')) @if ($re === $discount[$i - 1])
+                                    checked @endif
+                                    @endif
+
+
+
+                                name="discount" form="filter" value="{{ $discount[$i - 1] }}"
+                                class="w-4 h-4 text-green-700 bg-gray-100 border-gray-300 focus:ring-green-700
+                                 focus:ring-2  "
+                                id="">
+                                <p>above {{ $discount[$i - 1] }}</p>
                             </div>
-                           <div class="text-xs text-gray-500 font-semibold">
-                            (  {{ $Discount[$i-1]  }} )
-                           </div>
+                            <div class="text-xs text-gray-500 font-semibold">
+                                ({{ $Discount[$i - 1] }})
+                            </div>
 
                         </div>
                     @endforeach
@@ -199,11 +222,11 @@
             @if (request('category'))
                 <input hidden value={{ request('category') }} name="category" form="filter">
             @endif
-            <form action="{{ route('front.products') }}" id = "filter">
+            <form action="{{ route('front.products') }}" id="filter">
 
             </form>
         </div>
-        <button form ="filter" class ="px-5 py-1 text-sm text-white bg-greu hover:bg-green-700 rounded-sm">
+        <button form="filter" class="px-5 py-1 text-sm text-white bg-greu hover:bg-green-700 rounded-sm">
             Filter
         </button>
     </div>

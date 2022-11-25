@@ -6,7 +6,7 @@
 
                 <select id="selectSort" name="sort" form = "filter"
                     class="border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-100 ">
-
+                    <option selected>Default</option>
                     <option name="sort" value="LTH">Low - High Price</option>
                     <option name="sort" value="HTL">High - Low Price</option>
                 </select>
@@ -163,10 +163,18 @@
                     </div>
                 </div>
                 <div class="px-4 mt-4">
-                    <a href = "{{ route('cart.add',$product->id) }}"
-                        class="w-full rounded-md bg-greu hover:bg-green-300   flex items-center justify-center py-2 font-bold text-sm">
-                        Add to Cart
+                    @cart($product->id)
+
+                    <button
+                       disabled  class="w-full rounded-md bg-green-300 bg-opacity-70 disabled  flex items-center justify-center py-2 font-bold text-sm">
+                        Added
+                    </button>
+                   @else
+                   <a href = "{{ route('cart.add',$product->id) }}"
+                    class="w-full rounded-md bg-greu hover:bg-green-300 cursor-pointer   flex items-center justify-center py-2 font-bold text-sm">
+                    Add to Cart
                     </a>
+                    @endcart
                 </div>
 
             </div>
@@ -174,7 +182,7 @@
 
         <div class="flex w-full mt-7">
             <div class="">
-                {{ $products->onEachSide(0)->links() }}
+                {{ $products->onEachSide(1)->links() }}
 
             </div>
 
@@ -265,10 +273,17 @@
                             class="line-through ml-2 text-gray-600 text-xs font-semibold">${{ $product->price }}</span>
                     </div>
                     <div class="mt-3 w-40 ">
-                        <button
+                        @cart($product->id)
+                        <button disabled
+                            class="w-full rounded-md bg-green-300 bg-opacity-70 disabled  flex items-center justify-center py-2 font-bold text-sm">
+                            Added
+                        </button>
+                        @else
+                        <a href="{{ route('cart.add',$product->id) }}"
                             class="w-full rounded-md bg-greu hover:bg-green-300   flex items-center justify-center py-2 font-bold text-sm">
                             Add to Cart
-                        </button>
+                        </a>
+                        @endcart
                     </div>
                 </div>
 

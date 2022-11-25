@@ -1,4 +1,4 @@
-<nav class="px-16 2xl:px-28  py-2 sticky top-0 z-40 bg-white w-full shadow-sm">
+<nav class="px-16 2xl:px-28  py-2 sticky top-0 z-40  bg-white w-full shadow-sm ">
     <div class="flex">
         <div class="flex w-40 items-center font-bold font-Mukta text-2xl">
             <p class="text-green-700">Fast</p><span>Kart</span><span class="text-green-700">.</span>
@@ -33,8 +33,7 @@
             </div>
         </div>
     </div>
-
-        <div class="py-2 flex items-center justify-between">
+        <div class="py-2 flex items-center justify-between  ">
         <div class="">
             @include('layouts.navbarsub.categories')
         </div>
@@ -44,12 +43,7 @@
             </ul>
         </div>
         <div class="">
-            <div class="px-4 py-3 bg-green-100 text-green-800 rounded-xl">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                  </svg>
-
-            </div>
+          @include('layouts.randomBuzz')
         </div>
     </div>
 </nav>

@@ -14,9 +14,11 @@
         @vite(['resources/css/front.css', 'resources/js/app.js'])
         <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
     </head>
-    <body>
+    <body class="relative h-fit" x-data="{random:true}">
         @include('layouts.navbar')
-        <div class="font-sans text-gray-900 h-[200vh] ">
+        <div
+        class="font-sans text-gray-900 h-[200vh] brightness-50"
+        x-bind:class="{random ? 'hidden': 'hidden' }">
             @yield('content')
         </div>
         <script>

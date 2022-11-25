@@ -8,7 +8,16 @@
        @include('front.banner')
        @include('front.subbanner')
         @include('front.hero')
+
+
     </div>
 </div>
 
+
+@push('script')
+<script>
+    const some = "htet shine htwe";
+</script>
+
+@endpush
 @endsection

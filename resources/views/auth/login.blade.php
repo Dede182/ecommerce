@@ -1,6 +1,6 @@
 @extends('front')
 @section('content')
-    <div class="flex justify-between items-center px-16 2xl:px-28 bg-gray-100">
+    <div class="flex justify-between items-center px-16 2xl:px-28 bg-grau-100 py-7" py-7>
         <div class="font-Inter font-bold">
             Login
         </div>
