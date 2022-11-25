@@ -163,10 +163,10 @@
                     </div>
                 </div>
                 <div class="px-4 mt-4">
-                    <button
+                    <a href = "{{ route('cart.add',$product->id) }}"
                         class="w-full rounded-md bg-greu hover:bg-green-300   flex items-center justify-center py-2 font-bold text-sm">
                         Add to Cart
-                    </button>
+                    </a>
                 </div>
 
             </div>

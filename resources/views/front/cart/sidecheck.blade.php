@@ -7,19 +7,22 @@
         <div class="flex flex-col space-y-4  px-4 text-sm text-gray-700 font-semibold py-4 border-b">
             <div class="flex w-full justify-between">
                 <p class="capitalize">Subtotal</p>
-                <span>$2000</span>
+                <p class="flex">$ <span class="total">{{ $total }}</span></p>
             </div>
 
             <div class="flex w-full justify-between">
                 <p class="capitalize">Shipping</p>
-                <span>$6.90</span>
+                @php
+                    $shipping = 6.90;
+                @endphp
+                <p>$<span>6.90</span></p>
             </div>
 
         </div>
         <div class="pb-2 flex flex-col w-full px-4 pt-3">
             <div class="flex justify-between items-center font-semibold">
                 <p>Total(USD)</p>
-                <p class="text-greu">$2000</p>
+                <p class="text-greu check">{{ $total }}</p>
             </div>
            <button class="text-white bg-red-500 hover:bg-red-400 w-full py-2 rounded-md mt-4">
             Process To CheckOut

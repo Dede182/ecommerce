@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\User;
+use App\Helpers\MbCalculate;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
-use App\Models\User;
+use App\Models\CartProducts;
 
 class CartController extends Controller
 {
@@ -18,9 +21,18 @@ class CartController extends Controller
     public function index()
     {
        $carts = Cart::where('user_id',Auth::user()->id)->first();
-        $carts = $carts->cartproducts;
     //    return $carts;
-       return view('front.cart.index',compact('carts'));
+        $carts = $carts->cartproducts;
+
+        $discount = [];
+        foreach($carts as $key=>$cart){
+
+            $discountprice =  MbCalculate::discount($cart->product->discount, $cart->product->price);
+           $discount[$key] = $discountprice;
+        }
+        $total = array_sum($discount);
+    //    return $carts;
+       return view('front.cart.index',compact('carts','total'));
     }
 
     /**
@@ -28,11 +40,22 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function addToCart(Request $request){
+       $carts = Cart::where('user_id',Auth::user()->id)->first();
+        // return $request;
+        $productId =  $request->id;
+        $cartProduct = new CartProducts();
+        $cartProduct->cart_id = $carts->id;
+        $cartProduct->product_id = $productId;
+        $cartProduct->save();
+        return redirect()->back()->with('status','Added to Cart');
     }
 
+    public function removeFromCart(Request $request){
+        $cartProduct = CartProducts::findOrFail($request->id);
+        $cartProduct->delete();
+        return redirect()->back()->with("status",'Removed from cart');
+    }
     /**
      * Store a newly created resource in storage.
      *
