@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['front'], function ($view) {
             $view->with('categories',Category::latest('id')->get());
         });
-        View::composer(['layouts.navbar'], function ($view) {
+        View::composer(['front'], function ($view) {
             $view->with('randomProducts',Product::inRandomOrder()->limit(4)->get());
         });
         Blade::if('cart',function($productId){

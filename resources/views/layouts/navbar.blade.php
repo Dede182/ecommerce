@@ -1,4 +1,4 @@
-<nav class="px-16 2xl:px-28  py-2 sticky top-0 z-40  bg-white w-full shadow-sm ">
+<nav class="px-16 2xl:px-28  py-2 sticky top-0 z-30  bg-white w-full shadow-sm ">
     <div class="flex">
         <div class="flex w-40 items-center font-bold font-Mukta text-2xl">
             <p class="text-green-700">Fast</p><span>Kart</span><span class="text-green-700">.</span>

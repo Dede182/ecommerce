@@ -162,20 +162,20 @@
             </div>
             <div class="w-full">
                 <div class="mb-4 border-b pb-2 border-gray-200 dark:border-gray-700">
-                    <ul class="flex flex-wrap items-center text-sm  text-center" id="myTab"
+                    <ul class="flex flex-wrap items-center text-sm  text-center " id="myTab"
                         data-tabs-toggle="#myTabContent" role="tablist">
                         <li class="mr-2" role="presentation">
-                            <button class="w-32 py-2 bg-gray-200 font-bold focus:text-black  rounded-md"
+                            <button class="w-32 py-2 bg-gray-200 font-bold focus:text-black !text-gray-700 rounded-md"
                                 id="description-tab" data-tabs-target="#description" type="button" role="tab"
                                 aria-controls="description" aria-selected="false">Description</button>
                         </li>
                         <li class="mr-2" role="presentation">
-                            <button class="w-32 py-2 bg-gray-200 font-bold focus:text-black  rounded-md"
+                            <button class="w-32 py-2 bg-gray-200 font-bold focus:text-black !text-gray-700   rounded-md"
                                 id="Detail-tab" data-tabs-target="#Detail" type="button" role="tab"
                                 aria-controls="Detail" aria-selected="false">Another Details</button>
                         </li>
                         <li class="mr-2" role="presentation">
-                            <button class="w-32 py-2 bg-gray-200 font-bold focus:text-black  rounded-md"
+                            <button class="w-32 py-2 bg-gray-200 font-bold focus:text-black !text-gray-700  rounded-md"
                                 id="review-tab" data-tabs-target="#review" type="button" role="tab"
                                 aria-controls="review" aria-selected="false">Review</button>
                         </li>
