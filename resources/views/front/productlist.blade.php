@@ -57,17 +57,43 @@
                         @mouseout="open{{ $product->id }} =false"
                         class="absolute bg-white w-24 bottom-5 rounded-lg   py-1">
                             <div class="flex  justify-center px-2">
-                                <a href="{{ route('front.product.show',$product->id) }}"  class="border-r border-black px-1">
+                                @auth
+                                <a href="{{ route('front.product.show', $product->id) }}"
+                                    class="border-r border-black px-1">
                                     <i class="fa-regular fa-eye"></i>
 
                                 </a>
-                                <a href="#"  class="border-r border-black px-1">
+                                <a href="#" class="border-r border-black px-1">
                                     <i class="fa-regular fa-heart"></i>
 
                                 </a>
-                                <a href="#"  class="px-1">
+                                @cart($product->id)
+                                <a href="#" class="px-1">
+                                    <i class="fa-solid fa-check"></i>
+                                </a>
+
+                                @else
+                                <a href="{{ route('cart.add',$product->id) }}" class="px-1">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
+                                @endcart
+
+                                @endauth
+
+                                @guest
+                                <a href="{{ route('front.product.show', $product->id) }}"
+                                    class="border-r border-black px-1">
+                                    <i class="fa-regular fa-eye"></i>
+
+                                </a>
+                                <a href="#" class="border-r border-black px-1">
+                                    <i class="fa-regular fa-heart"></i>
+
+                                </a>
+                                <a href="#" class="px-1">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
+                                @endguest
                             </div>
                         </div>
                     </div>
@@ -108,11 +134,28 @@
                             <div class="text-greu text-xs font-semibold ml-3 mt-1">In Stock</div>
                         </div>
 
+                        @auth
+                        @cart($product->id)
+                        <button disabled href="{{ route('login') }}" class="w-full py-[10px] flex items-center justify-center text-center rounded-2xl bg-gray-200 hover:bg-gray-300 hover:text-gray-900 hover:font-bold
+                        transition">
+                           <p>Added</p>
+                       </button>
+                       @else
+                       <a href="{{ route('cart.add',$product->id) }}" class="w-full py-[10px] flex items-center justify-center text-center rounded-2xl bg-gray-200 hover:bg-gray-300 hover:text-gray-900 hover:font-bold
+                       transition">
+                          <p>Add to Cart</p>
+                      </a>
 
-                        <a class="w-full py-[10px] flex items-center justify-center text-center rounded-2xl bg-gray-200 hover:bg-gray-300 hover:text-gray-900 hover:font-bold
-                         transition">
-                            <p>Add to Cart</p>
-                        </a>
+                        @endcart
+                        @endauth
+
+                        @guest
+                        <a href="{{ route('login') }}" class="w-full py-[10px] flex items-center justify-center text-center rounded-2xl bg-gray-200 hover:bg-gray-300 hover:text-gray-900 hover:font-bold
+                        transition">
+                           <p>Add to Cart</p>
+                       </a>
+                        @endguest
+
                     </div>
                     {{-- product detail end --}}
                 </div>

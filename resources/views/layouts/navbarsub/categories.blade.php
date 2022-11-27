@@ -19,13 +19,27 @@
         x-transition.origin.top
         @click.away="open =false"
         @keydown.escape.window="open=false"
-        class="absolute top-10 -left-30 bg-white shadow-2xl z-20 rounded-lg w-60">
+        class="absolute top-10 -left-[75px] bg-white shadow-2xl z-20 rounded-lg w-60">
             <div class="flex space-x-10 px-10 pb-6 pt-4">
                 <div class="flex-col">
                     <h3 class="text-green-500">All Categories</h3>
                     <ul>
+
                         @foreach ($categories as $cata)
-                        <li class="cursor-pointer">{{ Str::ucfirst($cata->title)  }}</li>
+                        <li>
+                            <form  action = "{{ route('front.products') }}" id ="category{{ $cata->id }}">
+
+                            </form>
+                                <input form="category{{ $cata->id }}" hidden value ="{{ $cata->title }}" name="category">
+                                <button form ="category{{ $cata->id }}"
+                                    class="link link-underline link-underline-black text-gray-700 text-sm capitalize">
+                                    <p>
+                                        {{ $cata->title }}
+                                    </p>
+
+                                </button>
+                        </li>
+
                         @endforeach
 
 

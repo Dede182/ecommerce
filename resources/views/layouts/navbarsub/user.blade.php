@@ -21,7 +21,7 @@
                 <div class="flex-col items-center  justify-center w-full">
                     @auth
                         <form method="POST"
-                            class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-slate-200"
+                            class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-gray-200"
                             action="#">
                             @csrf
                             <i class="fa-solid fa-id-card"></i>
@@ -33,7 +33,7 @@
                         </form>
 
                         <form method="POST"
-                            class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-slate-200"
+                            class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-gray-200"
                             action="#">
                             @csrf
                             <i class="fa-solid fa-gear"></i>
@@ -45,7 +45,7 @@
                         </form>
                         @admin
                         <a href="{{ route('dashboard') }}"
-                        class="flex w-full justify-start pl-6 items-center text-sm space-x-2 py-3 hover:bg-slate-200">
+                        class="flex w-full justify-start pl-6 items-center text-sm space-x-2 py-3 hover:bg-gray-200">
 
                         <i class="fa-solid fa-chart-simple"></i>
                         <p>Dashboard</p>
@@ -54,7 +54,7 @@
 
 
                         <form method="POST"
-                            class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-slate-200"
+                            class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-gray-200"
                             action="{{ route('logout') }}">
                             @csrf
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -70,8 +70,15 @@
 
 
                     @guest
-                        <a href="{{ route('login') }}">
+                        <a
+                        class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-gray-200"
+                        href="{{ route('login') }}">
                             {{ __('Log in') }}</a>
+
+                            <a
+                            class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-gray-200"
+                            href="{{ route('register') }}">
+                                {{ __('Register') }}</a>
                     @endguest
                 </div>
 

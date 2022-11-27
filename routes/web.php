@@ -26,15 +26,19 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth','verified')->group(function(){
-    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
-    Route::resource('/category',CategoryController::class);
-    Route::resource('/product',ProductController::class);
     Route::delete('/productImage',[productImageController::class,'destroy'])->name('productImage.destroy');
     Route::post('/review',[ReviewController::class,'store'])->name('review.store');
     Route::get('/cart',[CartController::class,'index'])->name('cart.index');
     Route::get('cart/{id}',[CartController::class,'removeFromCart'])->name('cart.remove');
     Route::get('cart/add/{id}',[CartController::class,'addToCart'])->name('cart.add');
-    Route::get('/name',[CartController::class,'store'])->name('cart.store');
+    Route::get('/cart/store',[CartController::class,'store'])->name('cart.store');
+});
+
+Route::middleware('auth','isAdmin')->group(function(){
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+    Route::resource('/category',CategoryController::class);
+    Route::resource('/product',ProductController::class);
+
 });
 
 Route::get('/front',[FrontController::class,'index'])->name('front');

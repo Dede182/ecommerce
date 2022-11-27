@@ -66,7 +66,7 @@
     function buzz(){
         buzzBody.classList.remove('hidden')
     }
-    setTimeout(buzz,500)
+    setTimeout(buzz,2000)
 </script>
 
 @endpush

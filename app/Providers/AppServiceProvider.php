@@ -49,8 +49,8 @@ class AppServiceProvider extends ServiceProvider
 
 
         Blade::if('cart',function($productId){
-
-            $carts = Cart::where('user_id',Auth::user()->id)->first();
+            if(Auth::check()){
+                $carts = Cart::where('user_id',Auth::user()->id)->first();
                 if(!is_null($carts)){
                     $products = [];
                     foreach($carts->cartproducts as $key=>$cart){
@@ -59,6 +59,8 @@ class AppServiceProvider extends ServiceProvider
                     }
                     return in_array($productId,$products);
                 }
+
+            }
 
         });
 

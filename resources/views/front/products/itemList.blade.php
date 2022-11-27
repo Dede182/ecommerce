@@ -108,6 +108,30 @@
                         @mouseover="open{{ $product->id }} =true" @mouseout="open{{ $product->id }} =false"
                         class="absolute bg-white w-24 bottom-5 rounded-lg   py-1">
                         <div class="flex  justify-center px-2">
+                            @auth
+                            <a href="{{ route('front.product.show', $product->id) }}"
+                                class="border-r border-black px-1">
+                                <i class="fa-regular fa-eye"></i>
+
+                            </a>
+                            <a href="#" class="border-r border-black px-1">
+                                <i class="fa-regular fa-heart"></i>
+
+                            </a>
+                            @cart($product->id)
+                            <a href="#" class="px-1">
+                                <i class="fa-solid fa-check"></i>
+                            </a>
+
+                            @else
+                            <a href="{{ route('cart.add',$product->id) }}" class="px-1">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                            @endcart
+
+                            @endauth
+
+                            @guest
                             <a href="{{ route('front.product.show', $product->id) }}"
                                 class="border-r border-black px-1">
                                 <i class="fa-regular fa-eye"></i>
@@ -120,6 +144,7 @@
                             <a href="#" class="px-1">
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </a>
+                            @endguest
                         </div>
                     </div>
 
@@ -226,6 +251,31 @@
                         @mouseover="open{{ $product->id }} =true" @mouseout="open{{ $product->id }} =false"
                         class="absolute bg-white w-24 bottom-20 rounded-lg   py-1">
                         <div class="flex  justify-center px-2">
+
+                            @auth
+                            <a href="{{ route('front.product.show', $product->id) }}"
+                                class="border-r border-black px-1">
+                                <i class="fa-regular fa-eye"></i>
+
+                            </a>
+                            <a href="#" class="border-r border-black px-1">
+                                <i class="fa-regular fa-heart"></i>
+
+                            </a>
+                            @cart($product->id)
+                            <a href="#" class="px-1">
+                                <i class="fa-solid fa-check"></i>
+                            </a>
+
+                            @else
+                            <a href="{{ route('cart.add',$product->id) }}" class="px-1">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                            @endcart
+
+                            @endauth
+
+                            @guest
                             <a href="{{ route('front.product.show', $product->id) }}"
                                 class="border-r border-black px-1">
                                 <i class="fa-regular fa-eye"></i>
@@ -238,6 +288,8 @@
                             <a href="#" class="px-1">
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </a>
+                            @endguest
+
                         </div>
                     </div>
 
