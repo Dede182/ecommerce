@@ -1,5 +1,7 @@
 <div x-show="random" @click.away="random = false" @keydown.escape.window="random=false"
-    class="fixed   left-1/2 transform -translate-x-1/2 translate-y-1/3 z-40">
+
+    class="fixed hidden  left-1/2 transform -translate-x-1/2 translate-y-1/3 z-40" id = "buzz"
+  >
     <div class="bg-white w-[30vw] h-[60vh] rounded-lg shadow-sm  relative">
         <div class="flex flex-col px-6 py-7 space-y-7">
             <div class="flex flex-col">
@@ -57,3 +59,14 @@
 
     </div>
 </div>
+
+@push('script')
+<script>
+    const buzzBody = document.getElementById('buzz');
+    function buzz(){
+        buzzBody.classList.remove('hidden')
+    }
+    setTimeout(buzz,500)
+</script>
+
+@endpush

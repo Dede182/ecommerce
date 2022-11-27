@@ -23,17 +23,20 @@ class CartController extends Controller
     {
        $carts = Cart::where('user_id',Auth::user()->id)->first();
 
-        $carts = $carts->cartproducts;
+        if(isset($carts->cartproducts)){
+            $carts = $carts->cartproducts;
 
-        $discount = [];
-        foreach($carts as $key=>$cart){
+            $discount = [];
+            foreach($carts as $key=>$cart){
 
-            $discountprice =  MbCalculate::discount($cart->product->discount, $cart->product->price);
-           $discount[$key] = $discountprice;
+                $discountprice =  MbCalculate::discount($cart->product->discount, $cart->product->price);
+               $discount[$key] = $discountprice;
+            }
+            $total = array_sum($discount);
+        //    return $carts;
+           return view('front.cart.index',compact('carts','total'));
         }
-        $total = array_sum($discount);
-    //    return $carts;
-       return view('front.cart.index',compact('carts','total'));
+      return view('front.cart.index',compact('carts'));
     }
 
     /**

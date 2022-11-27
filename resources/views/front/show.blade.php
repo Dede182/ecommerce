@@ -132,9 +132,16 @@
                                             Buy Now
                                         </button>
                                     </div>
+                                    @cart($product->id)
                                     <button class="bg-gray-900 hover:bg-gray-700 transition text-white w-full rounded-lg py-2">
-                                        Add to Cart
+                                        Added
                                     </button>
+                                    @else
+                                    <a href = "{{ route('cart.add',$product->id) }} "
+                                        class="bg-gray-900 hover:bg-gray-700 transition text-white w-full rounded-lg py-2 flex items-center justify-center">
+                                        Add to Cart
+                                    </a>
+                                    @endcart
                                 </div>
                                 <div class="flex mt-3">
                                     <button class="flex space-x-1 text-gray-700 items-center text-xs">

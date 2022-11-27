@@ -1,4 +1,4 @@
-<div class="px-4 py-3 bg-green-100 text-green-800 rounded-xl font-Mukta ">
+<div class="px-4 py-3 bg-green-100 text-green-800 rounded-xl font-Mukta  ">
 
     <button class="pb-0"
     @click="random = !random">

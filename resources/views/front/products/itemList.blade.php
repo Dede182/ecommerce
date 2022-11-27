@@ -163,6 +163,7 @@
                     </div>
                 </div>
                 <div class="px-4 mt-4">
+                    @auth
                     @cart($product->id)
 
                     <button
@@ -175,6 +176,13 @@
                     Add to Cart
                     </a>
                     @endcart
+                    @endauth
+                    @guest
+                    <a href = "{{ route('login') }}"
+                        class="w-full rounded-md bg-greu hover:bg-green-300 cursor-pointer   flex items-center justify-center py-2 font-bold text-sm">
+                        Add to Cart
+                        </a>
+                    @endguest
                 </div>
 
             </div>
@@ -273,6 +281,7 @@
                             class="line-through ml-2 text-gray-600 text-xs font-semibold">${{ $product->price }}</span>
                     </div>
                     <div class="mt-3 w-40 ">
+                        @auth
                         @cart($product->id)
                         <button disabled
                             class="w-full rounded-md bg-green-300 bg-opacity-70 disabled  flex items-center justify-center py-2 font-bold text-sm">
@@ -284,6 +293,13 @@
                             Add to Cart
                         </a>
                         @endcart
+                        @endauth
+                        @guest
+                        <a  href = "{{ route('login') }}"
+                            class="w-full rounded-md bg-greu hover:bg-green-300   flex items-center justify-center py-2 font-bold text-sm">
+                            Add to Cart
+                        </a>
+                        @endguest
                     </div>
                 </div>
 

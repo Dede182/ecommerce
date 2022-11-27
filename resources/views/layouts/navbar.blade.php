@@ -25,9 +25,20 @@
                     <li class="px-3 border-l-[1.5px] border-black">
                         <img src="{{ asset('icon/heart.png') }}" class="w-5 h-5 " alt="">
                     </li>
-                    <li class="px-3 border-l-[1.5px] border-black">
+                    <a href="{{ route('cart.index') }}" class="px-3 border-l-[1.5px] border-black relative">
+                        @auth
+                        @if (isset($carts->cartproducts))
+                        @if(count($carts->cartproducts)>0)
+                        <span class="absolute -bottom-3 right-0 w-5 h-5 text-white text-xs flex items-center justify-center bg-red-500 rounded-md">
+                            {{ count($carts->cartproducts) }}
+                        </span>
+                         @endif
+                        @endif
+
+                        @endauth
+
                         <img src="{{ asset('icon/shopping-cart.png') }}" class="w-5 h-5 " alt="">
-                    </li>
+                    </a>
                     @include('layouts.navbarsub.user')
                 </ul>
             </div>

@@ -1,7 +1,7 @@
 <div class="flex justify-between ">
     <div class="flex items-center font-semibold">
 
-        <a href="{{ route('dashboard') }}">
+        <a href="{{ route('front.products') }}">
             <i class="fa-solid fa-house pr-2"></i>
         </a>
 

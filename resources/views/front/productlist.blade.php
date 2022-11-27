@@ -108,10 +108,11 @@
                             <div class="text-greu text-xs font-semibold ml-3 mt-1">In Stock</div>
                         </div>
 
-                        <button class="w-full py-[10px] text-center rounded-2xl bg-gray-200 hover:bg-gray-300 hover:text-gray-900 hover:font-bold
+
+                        <a class="w-full py-[10px] flex items-center justify-center text-center rounded-2xl bg-gray-200 hover:bg-gray-300 hover:text-gray-900 hover:font-bold
                          transition">
                             <p>Add to Cart</p>
-                        </button>
+                        </a>
                     </div>
                     {{-- product detail end --}}
                 </div>
