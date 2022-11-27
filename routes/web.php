@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FavController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\productImageController;
@@ -32,6 +33,7 @@ Route::middleware('auth','verified')->group(function(){
     Route::get('cart/{id}',[CartController::class,'removeFromCart'])->name('cart.remove');
     Route::get('cart/add/{id}',[CartController::class,'addToCart'])->name('cart.add');
     Route::get('/cart/store',[CartController::class,'store'])->name('cart.store');
+    Route::get('/wishlist',[FavController::class,'index'])->name('wishlist.index');
 });
 
 Route::middleware('auth','isAdmin')->group(function(){

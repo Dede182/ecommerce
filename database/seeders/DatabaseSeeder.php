@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Favitem;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -32,6 +34,8 @@ class DatabaseSeeder extends Seeder
             ReviewSeeder::class,
             CartSeeder::class,
             CartProductsSeeder::class,
+            FavSeeder::class,
+            FavitemSeeder::class,
         ]);
         $file = new FileSystem;
         $file->cleanDirectory('storage/app/public/');
