@@ -109,7 +109,28 @@
     border-bottom-right-radius: 10px;
 }
 
+.cicon::before{
+    position: absolute;
+    display: block;
+    top:50px;
+    left:20px;
+    content: "";
+    width : 3px;
+    height :100%;
+    background:#000;
+    opacity: .07;
+    z-index: 20;
+}
+ .cicon:last-child::before{
 
+    display: block;
+    top:60px;
+    left : -40px;
+    content: "";
+    width  : 3px;
+    height :73px;
+
+}
 
 .comments-container::before{
     position: absolute;

@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FavController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\productImageController;
 use App\Http\Controllers\ReviewController;
@@ -36,6 +37,7 @@ Route::middleware('auth','verified')->group(function(){
     Route::get('/wishlist',[FavController::class,'index'])->name('wishlist.index');
     Route::get('/wishlist/add/{id}',[FavController::class,'addToWish'])->name('wishlist.add');
     Route::get('/wishlist/remove/{id}',[FavController::class,'removeFromWish'])->name('wishlist.remove');
+    Route::get('/order',[OrderController::class,'index'])->name('order.index');
 });
 
 Route::middleware('auth','isAdmin')->group(function(){
