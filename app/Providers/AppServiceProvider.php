@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Fav;
 use App\Models\Product;
 use Illuminate\Support\Arr;
 use Illuminate\Pagination\Paginator;
@@ -54,6 +55,22 @@ class AppServiceProvider extends ServiceProvider
                 if(!is_null($carts)){
                     $products = [];
                     foreach($carts->cartproducts as $key=>$cart){
+                        $products[$key] = $cart->product_id;
+
+                    }
+                    return in_array($productId,$products);
+                }
+
+            }
+
+        });
+
+        Blade::if('wish',function($productId){
+            if(Auth::check()){
+                $wishes = Fav::where('user_id',Auth::user()->id)->first();
+                if(!is_null($wishes)){
+                    $products = [];
+                    foreach($wishes->favlist as $key=>$cart){
                         $products[$key] = $cart->product_id;
 
                     }

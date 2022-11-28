@@ -22,9 +22,9 @@
                     <li class="px-3">
                         <img src="{{ asset('icon/telephone-call.png') }}" class="w-5 h-5 " alt="">
                     </li>
-                    <li class="px-3 border-l-[1.5px] border-black">
+                    <a href="{{ route('wishlist.index') }}" class="px-3 border-l-[1.5px] border-black">
                         <i class="fa-regular fa-heart text-lg hover:text-red-700 transition cursor-pointer"></i>
-                    </li>
+                    </a>
                     <a href="{{ route('cart.index') }}" class="px-3 border-l-[1.5px] border-black relative">
                         @auth
                         @if (isset($carts->cartproducts))

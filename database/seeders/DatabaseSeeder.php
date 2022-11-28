@@ -23,8 +23,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'hhz',
             'email' => 'hhz@gmail.com',
-            'address' => 'Insein',
+            'address' => fake()->address,
             'role' => 'admin',
+            'phone' => '09'.fake()->numerify('##########'),
             'password' => Hash::make('asdffdsa')
         ]);
 

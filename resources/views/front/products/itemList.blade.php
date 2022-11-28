@@ -4,7 +4,7 @@
             <div class="flex items-center ">
                 <p class="whitespace-nowrap text-gray-700 text-sm">Sort By &nbsp;:&nbsp; </p>
 
-                <select id="selectSort" name="sort" form = "filter"
+                <select id="selectSort" name="sort" form="filter"
                     class="border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-100 ">
                     <option selected>Default</option>
                     <option name="sort" value="LTH">Low - High Price</option>
@@ -13,54 +13,48 @@
             </div>
 
             <div class="flex space-x-4 ">
-                @if (request('category') || request('discount') || request('pricing'))
+                @if (request('category') || request('discount') || request('pricing') || request('sort'))
                     <p class="flex whitespace-nowrap">Filters : </p>
-                    @if(request('category'))
+                    @if (request('category'))
                         <div
                             class="px-3 py-1 rounded-lg bg-gray-100 text-sm flex items-center justify-center space-x-4">
                             <p> {{ request('category') }}</p>
-                            <a href="{{ route('front.products', request()->except('category'))  }}">
+                            <a href="{{ route('front.products', request()->except('category')) }}">
                                 <i class="fa-solid fa-xmark text-gray-700 text-xs cursor-pointer"></i>
                             </a>
                         </div>
                     @endif
 
 
-                    @if(request('discount'))
-
-                            <div
-                                class="px-3 py-1 rounded-lg bg-gray-100 text-sm flex items-center justify-center space-x-4">
-                                <p class="flex items-center text-sm whitespace-nowrap"> {{ request('discount') }} OFF</p>
-                                <a href="{{ route('front.products', request()->except('discount'))  }}">
-                                    <i class="fa-solid fa-xmark text-gray-700 text-xs cursor-pointer"></i>
-                                </a>
-                            </div>
-
+                    @if (request('discount'))
+                        <div
+                            class="px-3 py-1 rounded-lg bg-gray-100 text-sm flex items-center justify-center space-x-4">
+                            <p class="flex items-center text-sm whitespace-nowrap"> {{ request('discount') }} OFF</p>
+                            <a href="{{ route('front.products', request()->except('discount')) }}">
+                                <i class="fa-solid fa-xmark text-gray-700 text-xs cursor-pointer"></i>
+                            </a>
+                        </div>
                     @endif
 
-                     @if(request('pricing'))
-
-                            <div
-                                class="px-3 py-1 rounded-lg bg-gray-100 text-sm flex items-center justify-center space-x-4">
-                                <p class="flex items-center text-sm whitespace-nowrap"> {{ request('pricing') }}</p>
-                                <a href="{{ route('front.products', request()->except('pricing'))  }}">
-                                    <i class="fa-solid fa-xmark text-gray-700 text-xs cursor-pointer"></i>
-                                </a>
-                            </div>
-
+                    @if (request('pricing'))
+                        <div
+                            class="px-3 py-1 rounded-lg bg-gray-100 text-sm flex items-center justify-center space-x-4">
+                            <p class="flex items-center text-sm whitespace-nowrap"> {{ request('pricing') }}</p>
+                            <a href="{{ route('front.products', request()->except('pricing')) }}">
+                                <i class="fa-solid fa-xmark text-gray-700 text-xs cursor-pointer"></i>
+                            </a>
+                        </div>
                     @endif
 
-                    @if(request('sort'))
-
-                    <div
-                        class="px-3 py-1 rounded-lg bg-gray-100 text-sm flex items-center justify-center space-x-4">
-                        <p class="flex items-center text-sm whitespace-nowrap"> {{ request('sort') }}</p>
-                        <a href="{{ route('front.products', request()->except('sort'))  }}">
-                            <i class="fa-solid fa-xmark text-gray-700 text-xs cursor-pointer"></i>
-                        </a>
-                    </div>
-
-            @endif
+                    @if (request('sort'))
+                        <div
+                            class="px-3 py-1 rounded-lg bg-gray-100 text-sm flex items-center justify-center space-x-4">
+                            <p class="flex items-center text-sm whitespace-nowrap"> {{ request('sort') }}</p>
+                            <a href="{{ route('front.products', request()->except('sort')) }}">
+                                <i class="fa-solid fa-xmark text-gray-700 text-xs cursor-pointer"></i>
+                            </a>
+                        </div>
+                    @endif
                 @endif
 
             </div>
@@ -109,41 +103,48 @@
                         class="absolute bg-white w-24 bottom-5 rounded-lg   py-1">
                         <div class="flex  justify-center px-2">
                             @auth
-                            <a href="{{ route('front.product.show', $product->id) }}"
-                                class="border-r border-black px-1">
-                                <i class="fa-regular fa-eye"></i>
+                                <a href="{{ route('front.product.show', $product->id) }}"
+                                    class="border-r border-black px-1">
+                                    <i class="fa-regular fa-eye"></i>
 
-                            </a>
-                            <a href="#" class="border-r border-black px-1">
-                                <i class="fa-regular fa-heart"></i>
+                                </a>
+                                @wish($product->id)
+                                    <a href="#" class="px-1 border-r border-black " class=" ">
+                                        <i
+                                            class="fa-solid text-gray-700 fa-heart-circle-check transition hover:text-red-600"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('wishlist.add', $product->id) }}" class="border-r border-black px-1">
+                                        <i class="fa-regular fa-heart transition hover:text-red-600"></i>
 
-                            </a>
-                            @cart($product->id)
-                            <a href="#" class="px-1">
-                                <i class="fa-solid fa-check"></i>
-                            </a>
+                                    </a>
+                                @endwish
 
-                            @else
-                            <a href="{{ route('cart.add',$product->id) }}" class="px-1">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                            </a>
-                            @endcart
+                                @cart($product->id)
+                                    <a href="#" class="px-1">
+                                        <i class="fa-solid fa-check"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('cart.add', $product->id) }}" class="px-1">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                @endcart
 
                             @endauth
 
                             @guest
-                            <a href="{{ route('front.product.show', $product->id) }}"
-                                class="border-r border-black px-1">
-                                <i class="fa-regular fa-eye"></i>
+                                <a href="{{ route('front.product.show', $product->id) }}"
+                                    class="border-r border-black px-1">
+                                    <i class="fa-regular fa-eye"></i>
 
-                            </a>
-                            <a href="#" class="border-r border-black px-1">
-                                <i class="fa-regular fa-heart"></i>
+                                </a>
+                                <a href="#" class="border-r border-black px-1">
+                                    <i class="fa-regular fa-heart"></i>
 
-                            </a>
-                            <a href="#" class="px-1">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                            </a>
+                                </a>
+                                <a href="#" class="px-1">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
                             @endguest
                         </div>
                     </div>
@@ -189,23 +190,22 @@
                 </div>
                 <div class="px-4 mt-4">
                     @auth
-                    @cart($product->id)
-
-                    <button
-                       disabled  class="w-full rounded-md bg-green-300 bg-opacity-70 disabled  flex items-center justify-center py-2 font-bold text-sm">
-                        Added
-                    </button>
-                   @else
-                   <a href = "{{ route('cart.add',$product->id) }}"
-                    class="w-full rounded-md bg-greu hover:bg-green-300 cursor-pointer   flex items-center justify-center py-2 font-bold text-sm">
-                    Add to Cart
-                    </a>
-                    @endcart
+                        @cart($product->id)
+                            <button disabled
+                                class="w-full rounded-md bg-green-300 bg-opacity-70 disabled  flex items-center justify-center py-2 font-bold text-sm">
+                                Added
+                            </button>
+                        @else
+                            <a href="{{ route('cart.add', $product->id) }}"
+                                class="w-full rounded-md bg-greu hover:bg-green-300 cursor-pointer   flex items-center justify-center py-2 font-bold text-sm">
+                                Add to Cart
+                            </a>
+                        @endcart
                     @endauth
                     @guest
-                    <a href = "{{ route('login') }}"
-                        class="w-full rounded-md bg-greu hover:bg-green-300 cursor-pointer   flex items-center justify-center py-2 font-bold text-sm">
-                        Add to Cart
+                        <a href="{{ route('login') }}"
+                            class="w-full rounded-md bg-greu hover:bg-green-300 cursor-pointer   flex items-center justify-center py-2 font-bold text-sm">
+                            Add to Cart
                         </a>
                     @endguest
                 </div>
@@ -224,7 +224,8 @@
 
 
     {{-- Show by Column --}}
-    <div x-show="!grid" x-transition.duration.500ms x-transition.origin.center class="grid grid-cols-1 gap-4 relative">
+    <div x-show="!grid" x-transition.duration.500ms x-transition.origin.center
+        class="grid grid-cols-1 gap-4 relative">
 
 
         @foreach ($products as $product)
@@ -234,13 +235,15 @@
                 <div x-data="{ open{{ $product->id }}: false }" class="flex justify-center w-[40%] mb-2 px-6 relative">
                     @if (is_null($product->featuredImage))
                         <a href="{{ route('front.product.show', $product->id) }}">
-                            <img @mouseover="open{{ $product->id }} =true" @mouseout="open{{ $product->id }} =false"
+                            <img @mouseover="open{{ $product->id }} =true"
+                                @mouseout="open{{ $product->id }} =false"
                                 src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
                                 class="h-36 w-full rounded-lg object-cover" alt="">
                         </a>
                     @else
                         <a href="{{ route('front.product.show', $product->id) }}">
-                            <img @mouseover="open{{ $product->id }} =true" @mouseout="open{{ $product->id }} =false"
+                            <img @mouseover="open{{ $product->id }} =true"
+                                @mouseout="open{{ $product->id }} =false"
                                 src="{{ asset('storage/product' . '/' . $product->folder . '/featured/' . $product->featuredImage) }}"
                                 class="h-36 w-full rounded-lg object-cover hover:scale-110 transition cursor-pointer"
                                 alt="">
@@ -253,41 +256,48 @@
                         <div class="flex  justify-center px-2">
 
                             @auth
-                            <a href="{{ route('front.product.show', $product->id) }}"
-                                class="border-r border-black px-1">
-                                <i class="fa-regular fa-eye"></i>
+                                <a href="{{ route('front.product.show', $product->id) }}"
+                                    class="border-r border-black px-1">
+                                    <i class="fa-regular fa-eye"></i>
 
-                            </a>
-                            <a href="#" class="border-r border-black px-1">
-                                <i class="fa-regular fa-heart"></i>
+                                </a>
+                                @wish($product->id)
+                                            <a href="#" class="px-1 border-r border-black " class=" ">
+                                                <i class="fa-solid text-gray-700 fa-heart-circle-check transition hover:text-red-600"></i>
+                                            </a>
+                                        @else
+                                            <a href="{{ route('wishlist.add', $product->id) }}"
+                                                class="border-r border-black px-1">
+                                                <i class="fa-regular fa-heart transition hover:text-red-600"></i>
 
-                            </a>
-                            @cart($product->id)
-                            <a href="#" class="px-1">
-                                <i class="fa-solid fa-check"></i>
-                            </a>
+                                            </a>
+                                        @endwish
 
-                            @else
-                            <a href="{{ route('cart.add',$product->id) }}" class="px-1">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                            </a>
-                            @endcart
+                                @cart($product->id)
+                                    <a href="#" class="px-1">
+                                        <i class="fa-solid fa-check"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('cart.add', $product->id) }}" class="px-1">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                @endcart
 
                             @endauth
 
                             @guest
-                            <a href="{{ route('front.product.show', $product->id) }}"
-                                class="border-r border-black px-1">
-                                <i class="fa-regular fa-eye"></i>
+                                <a href="{{ route('front.product.show', $product->id) }}"
+                                    class="border-r border-black px-1">
+                                    <i class="fa-regular fa-eye"></i>
 
-                            </a>
-                            <a href="#" class="border-r border-black px-1">
-                                <i class="fa-regular fa-heart"></i>
+                                </a>
+                                <a href="#" class="border-r border-black px-1">
+                                    <i class="fa-regular fa-heart"></i>
 
-                            </a>
-                            <a href="#" class="px-1">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                            </a>
+                                </a>
+                                <a href="#" class="px-1">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
                             @endguest
 
                         </div>
@@ -334,23 +344,23 @@
                     </div>
                     <div class="mt-3 w-40 ">
                         @auth
-                        @cart($product->id)
-                        <button disabled
-                            class="w-full rounded-md bg-green-300 bg-opacity-70 disabled  flex items-center justify-center py-2 font-bold text-sm">
-                            Added
-                        </button>
-                        @else
-                        <a href="{{ route('cart.add',$product->id) }}"
-                            class="w-full rounded-md bg-greu hover:bg-green-300   flex items-center justify-center py-2 font-bold text-sm">
-                            Add to Cart
-                        </a>
-                        @endcart
+                            @cart($product->id)
+                                <button disabled
+                                    class="w-full rounded-md bg-green-300 bg-opacity-70 disabled  flex items-center justify-center py-2 font-bold text-sm">
+                                    Added
+                                </button>
+                            @else
+                                <a href="{{ route('cart.add', $product->id) }}"
+                                    class="w-full rounded-md bg-greu hover:bg-green-300   flex items-center justify-center py-2 font-bold text-sm">
+                                    Add to Cart
+                                </a>
+                            @endcart
                         @endauth
                         @guest
-                        <a  href = "{{ route('login') }}"
-                            class="w-full rounded-md bg-greu hover:bg-green-300   flex items-center justify-center py-2 font-bold text-sm">
-                            Add to Cart
-                        </a>
+                            <a href="{{ route('login') }}"
+                                class="w-full rounded-md bg-greu hover:bg-green-300   flex items-center justify-center py-2 font-bold text-sm">
+                                Add to Cart
+                            </a>
                         @endguest
                     </div>
                 </div>
@@ -368,13 +378,12 @@
     </div>
 </div>
 @push('script')
-<script>
-    const filter = document.getElementById('filter')
-    const selectSort = document.getElementById('selectSort');
+    <script>
+        const filter = document.getElementById('filter')
+        const selectSort = document.getElementById('selectSort');
 
-    selectSort.addEventListener('change',()=>{
-        filter.submit();
-    })
-</script>
-
+        selectSort.addEventListener('change', () => {
+            filter.submit();
+        })
+    </script>
 @endpush

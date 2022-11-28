@@ -6,7 +6,7 @@
             {{ $product->title }}
         </div>
         <div class="flex items-center capitalize">
-            <x-breadcrumb :first="true" firstRoute="{{ route('front') }}" firstCrumb="product" :second="true"
+            <x-breadcrumb :first="true" firstRoute="{{ route('front.products') }}" firstCrumb="product" :second="true"
                 :secondCrumb="$product->title" />
         </div>
     </div>
@@ -144,10 +144,20 @@
                                     @endcart
                                 </div>
                                 <div class="flex mt-3">
-                                    <button class="flex space-x-1 text-gray-700 items-center text-xs">
+
+                                    @wish($product->id)
+                                    <button class="flex space-x-1 text-gray-700 items-center text-xs font-semibolds">
+                                        <i class="fa-solid fa-heart-circle-check"></i>
+                                        <p>This item is already in your Wishlist</p>
+                                    </button>
+
+                                    @else
+                                    <a href="{{ route('wishlist.add',$product->id) }}" class="flex space-x-1 text-gray-700 items-center text-xs">
                                         <i class="fa-regular fa-heart"></i>
                                         <p>Add To WishList</p>
-                                    </button>
+                                    </a>
+                                    @endwish
+
                                 </div>
                             </div>
 

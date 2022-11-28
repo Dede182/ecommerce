@@ -34,6 +34,8 @@ Route::middleware('auth','verified')->group(function(){
     Route::get('cart/add/{id}',[CartController::class,'addToCart'])->name('cart.add');
     Route::get('/cart/store',[CartController::class,'store'])->name('cart.store');
     Route::get('/wishlist',[FavController::class,'index'])->name('wishlist.index');
+    Route::get('/wishlist/add/{id}',[FavController::class,'addToWish'])->name('wishlist.add');
+    Route::get('/wishlist/remove/{id}',[FavController::class,'removeFromWish'])->name('wishlist.remove');
 });
 
 Route::middleware('auth','isAdmin')->group(function(){
