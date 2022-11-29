@@ -24,9 +24,13 @@
                 <p>Total(USD)</p>
                 <p class="text-greu check">{{ $total }}</p>
             </div>
-           <button class="text-white bg-red-500 hover:bg-red-400 w-full py-2 rounded-md mt-4">
-            Process To CheckOut
-           </button>
+            <form action="{{ route('order.store') }}" id = "checkout" method="POST">
+                @csrf
+                <button class="text-white bg-red-500 hover:bg-red-400 w-full py-2 rounded-md mt-4">
+                    Process To CheckOut
+                   </button>
+            </form>
+
 
            <a href="{{ route('front.products') }}" class=" flex items-center justify-center bg-gray-300 hover:bg-gray-400 w-full py-2 rounded-md mt-4">
             <i class="fa-solid fa-arrow-left text-xs"></i> Return To Shopping

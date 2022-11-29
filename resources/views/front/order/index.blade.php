@@ -11,11 +11,11 @@
     </div>
 
     <div class="px-16 2xl:px-28 py-8">
-        <div class="flex">
-            <div class="w-[70%] flex flex-col space-y-5 relative">
+        <div class="flex space-x-5">
+            <div class="w-[65%] flex flex-col space-y-5 relative">
 
-                <div class="flex space-x-4">
-                    <span class="w-10  h-10 flex items-center justify-center bg-grau-100 rounded-full cicon ">
+                <div class="flex space-x-4 relative">
+                    <span class="w-10  h-10 flex items-center justify-center bg-grau-100 rounded-full cicon1">
                         <i class="fa-solid fa-cart-shopping text-greu"></i>
                     </span>
                     <div class="flex flex-col bg-grau-100 w-full rounded-lg px-5 py-5 relative">
@@ -40,15 +40,15 @@
 
 
                 <div class="flex space-x-4 relative">
-                    <span class="w-10  h-10 flex items-center justify-center bg-grau-100 rounded-full  cicon " >
+                    <span class="w-10  h-10 flex items-center justify-center bg-grau-100 rounded-full  cicon2 ">
                         <i class="fa-solid fa-location-dot text-greu"></i>
                     </span>
-                    <div class="flex flex-col bg-grau-100 w-full rounded-lg px-5 py-2 ">
+                    <div class="flex flex-col bg-grau-100 w-full rounded-lg px-5 py-5 ">
                         <p class="font-semibold">Delivery Option</p>
 
                         <div class="flex space-x-5 w-full">
                             <div class="w-full flex space-x-2 items-start bg-white  px-4 py-4 mt-5 rounded-lg shadow-md">
-                                <input type="radio" id="sdo" checked name="delivery"
+                                <input type="radio" id="sdo" checked name="delivery" value="Standard Delivery Option" form ="check"
                                     class="w-4 h-4 mt-1 text-green-500 bg-gray-100 border-gray-300 focus:ring-green-700
                                 focus:ring-2 ">
                                 <label for="sdo" class="flex flex-col space-y-2">
@@ -56,7 +56,7 @@
                                 </label>
                             </div>
                             <div class="w-full flex space-x-2 items-start bg-white  px-4 py-4 mt-5 rounded-lg shadow-md">
-                                <input type="radio" id="fdo" checked name="delivery"
+                                <input type="radio" id="fdo" checked name="delivery" value="Future Delivery Option" form ="check"
                                     class="w-4 h-4 mt-1 text-green-500 bg-gray-100 border-gray-300 focus:ring-green-700
                                 focus:ring-2 ">
                                 <label for="sdo" class="flex flex-col space-y-2">
@@ -82,10 +82,11 @@
                 </div>
 
             </div>
+            <div class="w-[35%]">
+                @include('front.order.sidecheck')
+            </div>
         </div>
-        <div class="w-[30%]">
 
-        </div>
     </div>
     </div>
 @endsection

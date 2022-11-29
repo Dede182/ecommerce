@@ -109,21 +109,33 @@
     border-bottom-right-radius: 10px;
 }
 
-.cicon::before{
+.cicon1::before{
     position: absolute;
     display: block;
-    top:50px;
+    top:45px;
     left:20px;
     content: "";
     width : 3px;
-    height :100%;
+    height :95%;
+    background:#000;
+    opacity: .07;
+    z-index: 20;
+}
+.cicon2::before{
+    position: absolute;
+    display: block;
+    top:45px;
+    left:20px;
+    content: "";
+    width : 3px;
+    height :80%;
     background:#000;
     opacity: .07;
     z-index: 20;
 }
  .cicon:last-child::before{
 
-    display: block;
+    display: none;
     top:60px;
     left : -40px;
     content: "";

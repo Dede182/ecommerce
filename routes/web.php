@@ -37,7 +37,9 @@ Route::middleware('auth','verified')->group(function(){
     Route::get('/wishlist',[FavController::class,'index'])->name('wishlist.index');
     Route::get('/wishlist/add/{id}',[FavController::class,'addToWish'])->name('wishlist.add');
     Route::get('/wishlist/remove/{id}',[FavController::class,'removeFromWish'])->name('wishlist.remove');
-    Route::get('/order',[OrderController::class,'index'])->name('order.index');
+    Route::get('/order/{id}',[OrderController::class,'index'])->name('order.index');
+    Route::post('/order/store',[OrderController::class,'store'])->name('order.store');
+    Route::put('/order/{order}',[OrderController::class,'update'])->name('order.update');
 });
 
 Route::middleware('auth','isAdmin')->group(function(){

@@ -1,37 +1,74 @@
-<div class="w-full bg-grau-100 rounded-lg">
-    <div class="flex flex-col py-4">
-        <div class="pb-2 border-b w-full px-4">
-            <p class="font-semibold text-lg text-gray-800">Cart Total</p>
+<div class="w-full bg-grau-100 px-3 py-4 rounded-md">
+    <div class="flex flex-col">
+        <h3 class="text-md font-semibold pb-3 border-b">Order Summary</h3>
+
+        <div class="flex flex-col space-y-7 mt-4 pb-3 border-b">
+
+            @forelse ($orders->orderitem as $order)
+                <div class="flex justify-between items-center">
+                    <div class="flex    ">
+                        <div class="w-20">
+                            @if (is_null($order->product->featuredImage))
+                                <a href="{{ route('front.product.show', $order->product->id) }}">
+                                    <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
+                                        class="h-16 w-full rounded-lg object-cover" alt="">
+                                </a>
+                            @else
+                                <a href="{{ route('front.product.show', $order->product->id) }}">
+                                    <img src="{{ asset('storage/product' . '/' . $order->product->folder . '/featured/' . $order->product->featuredImage) }}"
+                                        class="h-16 w-full rounded-lg object-cover hover:scale-110 transition cursor-pointer"
+                                        alt="">
+                                </a>
+                            @endif
+                        </div>
+                        <div class="flex items-center ml-3">
+                            <p class="text-xs text-gray-700 font-semibold">{{ $order->product->title }}</p>
+                            <span class="text-xs text-black font-bold ml-3">X {{ $order->quantity }}</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-700 font-semibold">$
+                        @if (isset($order->product->discount))
+                        {{ App\Helpers\MbCalculate::discount($order->product->discount, $order->product->price) }}</span>
+                           @else
+                           {{ $order->product->price }}
+                        @endif
+                    </p>
+                </div>
+            @empty
+            @endforelse
+
         </div>
 
-        <div class="flex flex-col space-y-4  px-4 text-sm text-gray-700 font-semibold py-4 border-b">
-            <div class="flex w-full justify-between">
-                <p class="capitalize">Subtotal</p>
-                <p class="flex">$ <span class="total">{{ $total }}</span></p>
+        <div class="flex flex-col pb-4 border-b">
+            <div class="flex justify-between items-center font-semibold mt-3">
+                <p class="text-gray-700 text-sm ">Subtotal</p>
+                <span class="text-gray-700 text-sm ">${{ $total }}</span>
             </div>
-
-            <div class="flex w-full justify-between">
-                <p class="capitalize">Shipping</p>
-                @php
-                    $shipping = 6.90;
-                @endphp
-                <p>$<span>6.90</span></p>
+            @php
+                $deli = 8.90
+            @endphp
+            <div class="flex justify-between items-center font-semibold mt-3">
+                <p class="text-gray-700 text-sm ">Shipping</p>
+                <span class="text-gray-700 text-sm ">${{ $deli }}</span>
             </div>
-
-        </div>
-        <div class="pb-2 flex flex-col w-full px-4 pt-3">
-            <div class="flex justify-between items-center font-semibold">
-                <p>Total(USD)</p>
-                <p class="text-greu check">{{ $total }}</p>
-            </div>
-           <button class="text-white bg-red-500 hover:bg-red-400 w-full py-2 rounded-md mt-4">
-            Process To CheckOut
-           </button>
-
-           <a href="{{ route('front.products') }}" class=" flex items-center justify-center bg-gray-300 hover:bg-gray-400 w-full py-2 rounded-md mt-4">
-            <i class="fa-solid fa-arrow-left text-xs"></i> Return To Shopping
-           </a>
         </div>
 
+        <div class="flex justify-between items-center font-semibold mt-3">
+            <p class="text-gray-700 text-sm ">Total (USD)</p>
+            <span class="text-gray-900 text-md ">${{ $total - $deli }}</span>
+        </div>
     </div>
+
+
+
+</div>
+
+<div class="mt-8">
+    <form action="{{ route('order.update',$orders->id) }}" id ="check" method="POST">
+        @csrf
+        @method('put')
+        <button class="w-full flex items-center justify-center text-white  hover:bg-green-300  bg-greu rounded-lg py-2">
+            Place Order
+        </button>
+    </form>
 </div>

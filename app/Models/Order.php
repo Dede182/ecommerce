@@ -9,9 +9,9 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $with =['orderItem'];
+    protected $with =['orderitem'];
 
-    public function orderItem(){
+    public function orderitem(){
         return $this->hasMany(Orderitem::class);
     }
 }

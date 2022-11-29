@@ -19,11 +19,17 @@
 
                 <div class="w-full bg-grau-100  flex-col-reverse flex px-5">
 
-                    @forelse ($carts as $cart)
+                    @forelse ($carts as $key=>$cart)
+                    <input type="text" class="hidden" form="checkout" name = "product[]" value="{{ $cart->product->id }}">
                         <div class="flex w-full  py-6  justify-evenly">
                             <div class=" w-full">
-                                <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}"
-                                    class="w-20 h-20 object-cover rounded-lg" alt="">
+                                @if(is_null($cart->product->featuredImage))
+
+                                <img src="{{ asset('skin-and-hair-care-beauty-produc.jpg') }}" class="h-16 w-16 rounded-lg object-cover" alt="">
+                                @else
+                                <img src="{{ asset('storage/product'.'/'.$cart->product->folder.'/featured/'.$cart->product->featuredImage) }}" class="h-16 w-16 rounded-lg object-cover" alt="">
+
+                                @endif
                             </div>
                             <div class=" flex flex-col  w-full ">
                                 <p class="text-xs font-semibold pt-1">{{ $cart->product->title }}</p>
@@ -58,9 +64,9 @@
                                         <i class="fa-solid fa-minus "></i>
                                     </button>
 
-                                    <input type="number" min="1"
+                                    <input type="number" min="1" form="checkout"
                                         class="quantity outline-none focus:outline-none text-center bg-gray-100  border-grau-100 w-12 !border-none !m-0 !p-0"
-                                        value="1" name="custom-input-number">
+                                        value="1" name="quantity[]">
 
                                     <button data-action="increment"
                                         class="bg-gray-300 rounded-full px-3 text-xs py-2 quanitity-increase">

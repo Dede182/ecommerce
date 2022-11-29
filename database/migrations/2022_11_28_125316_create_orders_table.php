@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('deliveryOption');
-            $table->string('payment');
+            $table->string('deliveryOption')->nullable();
+            $table->string('payment')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->integer('admin_id');
             $table->timestamps();

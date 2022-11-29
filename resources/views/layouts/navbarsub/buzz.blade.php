@@ -14,7 +14,7 @@
             </form>
 
             @endforeach
-            <div class="h-[430px] flex flex-col overflow-hidden hover:overflow-y-scroll scrollbar-hide space-y-6 text-black">
+            <div class="h-[230px] 2xl:h-[430px] flex flex-col overflow-hidden hover:overflow-y-scroll scrollbar-hide space-y-6 text-black">
                 {{-- random products are from app service provider --}}
 
                 @foreach ($randomProducts as $key=>$product)

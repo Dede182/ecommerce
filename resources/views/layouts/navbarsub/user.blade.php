@@ -16,7 +16,7 @@
             @endauth
         </div>
         <div x-show="open" x-transition.duration.500ms x-transition.origin.top
-            class="absolute top-10 -right-20  bg-white shadow-2xl z-20 rounded-lg w-48">
+            class="absolute top-10 -right-16  bg-white shadow-2xl z-20 rounded-lg w-48">
             <div class="flex space-x-10   ">
                 <div class="flex-col items-center  justify-center w-full">
                     @auth
