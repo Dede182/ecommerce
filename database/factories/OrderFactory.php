@@ -22,6 +22,7 @@ class OrderFactory extends Factory
            'payment' => fake()->randomElement(['COD','Paypal']),
            'user_id' => User::inRandomOrder()->first(),
            'admin_id' => User::where('role','admin')->first(),
+           'code' => fake()->numerify("########"),
         ];
     }
 }
