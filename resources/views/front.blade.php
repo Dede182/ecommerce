@@ -23,9 +23,13 @@
     </div>
     @include('layouts.navbarsub.buzz')
     @include('layouts.navbar')
-    <div class="font-sans text-gray-900 h-[200vh] ">
+    <div class="font-sans text-gray-900">
         @yield('content')
     </div>
+    @include('foot')
+
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

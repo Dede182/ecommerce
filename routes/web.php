@@ -23,9 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::middleware('auth','verified')->group(function(){
     Route::delete('/productImage',[productImageController::class,'destroy'])->name('productImage.destroy');
@@ -49,7 +47,7 @@ Route::middleware('auth','isAdmin')->group(function(){
 
 });
 
-Route::get('/front',[FrontController::class,'index'])->name('front');
+Route::get('/',[FrontController::class,'index'])->name('front');
 Route::get('/front/products',[FrontController::class,'products'])->name('front.products');
 Route::get('/front/san',[FrontController::class,'san'])->name('front.san');
 Route::get('/front/product/{id}',[FrontController::class,'show'])->name('front.product.show');
