@@ -1,4 +1,4 @@
-<div class="bg-green-700   flex items-center space-x-2 px-5 py-3 rounded-lg">
+<div class="bg-green-700   flex items-center space-x-2 px-5 py-3 rounded-lg" >
     <div
     x-data="{ open: false }"
 
@@ -19,7 +19,8 @@
         x-transition.origin.top
         @click.away="open =false"
         @keydown.escape.window="open=false"
-        class="absolute top-10 -left-[75px] bg-white shadow-2xl z-20 rounded-lg w-60">
+        class="absolute top-10 -left-[75px] bg-white shadow-2xl z-20 rounded-lg w-60 hidden"
+        id="categories">
             <div class="flex space-x-10 px-10 pb-6 pt-4">
                 <div class="flex-col">
                     <h3 class="text-green-500">All Categories</h3>
@@ -51,3 +52,13 @@
         </div>
     </div>
 </div>
+@push('script')
+<script>
+     const categories = document.getElementById('categories');
+    function buzz(){
+        categories.classList.remove('hidden')
+    }
+    setTimeout(buzz,2000)
+</script>
+
+@endpush

@@ -69,6 +69,7 @@ class OrderController extends Controller
         $order = new Order();
         $order->user_id = Auth::user()->id;
         $order->admin_id = User::where('role','admin')->first()->id;
+        $order->code =   random_int(10000000, 99999999);
         $order->save();
 
         foreach($request->product as $key=>$pro){

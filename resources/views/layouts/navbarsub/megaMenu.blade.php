@@ -16,7 +16,8 @@
         x-transition.duration.500ms
         x-transition.origin.top
         @click.away="open = false"
-        class="absolute top-10 -left-20 bg-white shadow-2xl rounded-lg z-20 w-96 ">
+        id = "mega"
+        class="absolute top-10 -left-20 bg-white shadow-2xl hidden rounded-lg z-20 w-96 ">
             <div class="flex space-x-10 px-10 pb-6 pt-4">
                 <div class="flex-col">
                     <h3 class="text-green-500">Daily vegetables</h3>
@@ -45,3 +46,13 @@
         </div>
     </div>
 </li>
+@push('script')
+    <script>
+         const mega = document.getElementById('mega');
+    function buzz(){
+        mega.classList.remove('hidden')
+    }
+    setTimeout(buzz,2000)
+    </script>
+
+@endpush

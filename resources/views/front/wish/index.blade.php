@@ -16,7 +16,8 @@
 
                     <div
                         class="absolute top-[2%] right-[2%] rounded-full h-6 w-6 shadow-md cursor-pointer flex items-center justify-center bg-white hover:bg-gray-200 transition">
-                        <a href="{{ route('wishlist.remove', $wish->id) }}" class="">
+
+                        <a href="{{ route('wishlist.remove', $wish->id) }}"  class="">
                             <i class="fa-solid fa-xmark"></i>
                         </a>
                     </div>
