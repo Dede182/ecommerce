@@ -21,15 +21,15 @@
             <div class="flex space-x-10   ">
                 <div class="flex-col items-center  justify-center w-full">
                     @auth
-                        <form method="POST"
+                        <form
                             class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-gray-200"
-                            action="#">
+                            action="{{ route('order.history') }}">
                             @csrf
                             <i class="fa-solid fa-id-card"></i>
-                            <a href="# " class=" "
+                            <a href="{{ route('order.history') }} " class=" "
                                 onclick="event.preventDefault();
                                             this.closest('form').submit();">
-                                {{ __('Profile') }}
+                                {{ __('Your Orders') }}
                             </a>
                         </form>
 

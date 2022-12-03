@@ -22,7 +22,7 @@
 
         </div>
 
-        <div class="flex mt-10 h-[30vh] justify-between border-b border-dotted border-gray-400 border-opacity-70 pb-10">
+        <div class="flex mt-10 h-[40vh] 2xl:h-[30vh] justify-between border-b border-dotted border-gray-400 border-opacity-70 pb-10">
             <div class="flex flex-col h-full justify-between">
                 <div class="flex w-40 items-center font-bold font-Mukta text-2xl">
                     <p class="text-green-700">Fast</p><span>kart</span>

@@ -2,8 +2,8 @@
 
     class="fixed hidden  left-1/2 transform -translate-x-1/2 translate-y-1/3 z-40" id = "buzz"
   >
-    <div class="bg-white w-[30vw] h-[60vh] rounded-lg shadow-sm  relative">
-        <div class="flex flex-col px-6 py-7 space-y-7">
+    <div class="bg-white w-[30vw] h-[65vh] rounded-lg shadow-sm  relative">
+        <div class="flex flex-col px-6 pt-7 pb-3 space-y-7">
             <div class="flex flex-col">
                 <p class="text-xl text-gray-800 font-semibold">Deal Today</p>
                 <p class="text-gray-700 text-sm">Recommend deals for you</p>
@@ -14,7 +14,7 @@
             </form>
 
             @endforeach
-            <div class="h-[230px] 2xl:h-[430px] flex flex-col overflow-hidden hover:overflow-y-scroll scrollbar-hide space-y-6 text-black">
+            <div class="h-[270px] 2xl:h-[430px] flex flex-col overflow-hidden hover:overflow-y-scroll scrollbar-hide space-y-6 text-black">
                 {{-- random products are from app service provider --}}
 
                 @foreach ($randomProducts as $key=>$product)

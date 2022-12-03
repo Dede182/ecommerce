@@ -46,22 +46,7 @@ class OrderController extends Controller
     }
 
 }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreOrderRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreOrderRequest $request)
     {
         // return $request;
@@ -85,35 +70,7 @@ class OrderController extends Controller
         return redirect()->route('order.index',[$order->id])->with('status','Check your Order');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateOrderRequest  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateOrderRequest $request, Order $order)
     {
         $order->deliveryOption = $request->delivery;
@@ -123,14 +80,8 @@ class OrderController extends Controller
         return redirect()->route('front')->with("status" , 'Your Order was confirmed and we will take response back to you soon');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
+
+    public function history(){
+        return view('front.orderCheck.index');
     }
 }
