@@ -70,6 +70,7 @@ class OrderController extends Controller
         $order->user_id = Auth::user()->id;
         $order->admin_id = User::where('role','admin')->first()->id;
         $order->code =   random_int(10000000, 99999999);
+        $order->status  = "Pending";
         $order->save();
 
         foreach($request->product as $key=>$pro){
@@ -117,6 +118,7 @@ class OrderController extends Controller
     {
         $order->deliveryOption = $request->delivery;
         $order->payment = $request->Payment;
+        $order->status = "Pending";
         $order->update();
         return redirect()->route('front')->with("status" , 'Your Order was confirmed and we will take response back to you soon');
     }
