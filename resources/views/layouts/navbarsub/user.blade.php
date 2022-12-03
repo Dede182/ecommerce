@@ -5,7 +5,7 @@
 
         <div x-on:click="open = ! open"
             class="flex items-center cursor-pointer hover:text-green-500 focus:text-green-500">
-            <img src="{{ asset('default user.jpg') }}" class="w-6 h-6 rounded-full object-cover" alt="">
+            <img src="{{ asset('default user.jpg') }}" class="w-5 h-5 rounded-full object-cover" alt="">
             @auth
                 <div class="flex items-center justify-center">
                     <div class="avatar ">

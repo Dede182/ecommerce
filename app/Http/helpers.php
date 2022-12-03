@@ -64,7 +64,19 @@ class MbCalculate
        return  number_format($ratePerstar,0,'.');
     }
 
-
+    public static function status($status){
+        $bg = '';
+        if($status === "Delivered"){
+            $bg = "bg-greu";
+        }
+        elseif($status==="Pending"){
+            $bg = "bg-yellow-400";
+        }
+        else{
+            $bg = "bg-red-600";
+        }
+        return $bg;
+    }
 }
 
 

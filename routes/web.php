@@ -6,6 +6,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FavController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderList;
+use App\Http\Controllers\OrderListController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\productImageController;
 use App\Http\Controllers\ReviewController;
@@ -46,6 +48,7 @@ Route::middleware('auth','isAdmin')->group(function(){
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::resource('/category',CategoryController::class);
     Route::resource('/product',ProductController::class);
+    Route::get('/orderList',[OrderListController::class,'index'])->name('orderList.index');
 
 });
 

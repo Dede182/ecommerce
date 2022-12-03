@@ -1,4 +1,4 @@
-<div class="   space-x-2 w-40  flex first-line: items-center   rounded-lg ml-4" >
+<div class=" space-x-2 w-32  flex  items-center   rounded-lg ml-4" >
     <div
     x-data="{ open: false }"
 
@@ -7,7 +7,7 @@
         <div
        @mouseover="open = true"
         class="flex items-center flex-row-reverse cursor-pointer duration-1000 hover:text-green-500 focus:text-green-500 w-full selection: text-xs">
-        <i class="fa-solid fa-chevron-down ml-2"></i>
+        <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
 
         <p class="text-xs flex flex-nowrap link link-underline link-underline-black pb-1">All Categories</p>
         </div>

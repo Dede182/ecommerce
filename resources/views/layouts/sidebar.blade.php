@@ -17,6 +17,7 @@
             @include('dashboard.sidebarComponent.Dashborad')
             @include('dashboard.sidebarComponent.product')
             @include('dashboard.sidebarComponent.category')
+            @include('dashboard.sidebarComponent.orderlist')
         </div>
 
         {{-- sidebar list end --}}

@@ -85,14 +85,16 @@ class OrderController extends Controller
     }
 
     public function success(Request $request,Order $order){
-        return view('front.order.ordersuccess',compact('order'));
+        $orders = $order;
+        $user = Auth::user();
+        return view('front.order.ordersuccess',compact('orders','user'));
     }
 
     public function history(Request $request){
         // return $request;
         if($request->history){
             $time = $request->history;
-            $time = Carbon::now()->subDays($time);
+            $time = Carbon::now()->subMinutes($time);
             $orders = Order::where('user_id',Auth::user()->id)->where('created_at','>=',$time)->get();
             // return $orders;
         }
