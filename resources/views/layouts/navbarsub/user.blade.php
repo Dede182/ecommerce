@@ -21,29 +21,15 @@
             <div class="flex space-x-10   ">
                 <div class="flex-col items-center  justify-center w-full">
                     @auth
-                        <form
+                        <form method="POST"
                             class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-gray-200"
                             action="{{ route('order.history') }}">
                             @csrf
-                            <i class="fa-solid fa-id-card"></i>
-                            <a href="{{ route('order.history') }} " class=" "
-                                onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                                {{ __('Your Orders') }}
-                            </a>
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                            <button>My Orders</button>
                         </form>
 
-                        <form method="POST"
-                            class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-gray-200"
-                            action="#">
-                            @csrf
-                            <i class="fa-solid fa-gear"></i>
-                            <a href=" #" class=" "
-                                onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                                {{ __('setting') }}
-                            </a>
-                        </form>
+
                         @admin
                         <a href="{{ route('dashboard') }}"
                         class="flex w-full justify-start pl-6 items-center text-sm space-x-2 py-3 hover:bg-gray-200">
@@ -54,7 +40,7 @@
                         @endadmin
 
 
-                        <form method="POST"
+                        <form
                             class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-gray-200"
                             action="{{ route('logout') }}">
                             @csrf

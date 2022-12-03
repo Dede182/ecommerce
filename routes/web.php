@@ -38,7 +38,8 @@ Route::middleware('auth','verified')->group(function(){
     Route::get('/order/{id}',[OrderController::class,'index'])->name('order.index');
     Route::post('/order/store',[OrderController::class,'store'])->name('order.store');
     Route::put('/order/{order}',[OrderController::class,'update'])->name('order.update');
-    Route::get('/orders',[OrderController::class,'history'])->name('order.history');
+    Route::post('/orders',[OrderController::class,'history'])->name('order.history');
+    Route::get('/order/order-success/{order}',[OrderController::class,'success'])->name('order.success');
 });
 
 Route::middleware('auth','isAdmin')->group(function(){

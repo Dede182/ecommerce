@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -56,6 +57,7 @@ class OrderController extends Controller
         $order->admin_id = User::where('role','admin')->first()->id;
         $order->code =   random_int(10000000, 99999999);
         $order->status  = "Pending";
+        $order->total = 0;
         $order->save();
 
         foreach($request->product as $key=>$pro){
@@ -73,15 +75,32 @@ class OrderController extends Controller
 
     public function update(UpdateOrderRequest $request, Order $order)
     {
+        // return $request;
         $order->deliveryOption = $request->delivery;
         $order->payment = $request->Payment;
         $order->status = "Pending";
+        $order->total = $request->total;
         $order->update();
-        return redirect()->route('front')->with("status" , 'Your Order was confirmed and we will take response back to you soon');
+        return redirect()->route('order.success',[$order->id]) ;
     }
 
+    public function success(Request $request,Order $order){
+        return view('front.order.ordersuccess',compact('order'));
+    }
 
-    public function history(){
-        return view('front.orderCheck.index');
+    public function history(Request $request){
+        // return $request;
+        if($request->history){
+            $time = $request->history;
+            $time = Carbon::now()->subDays($time);
+            $orders = Order::where('user_id',Auth::user()->id)->where('created_at','>=',$time)->get();
+            // return $orders;
+        }
+        else{
+            $orders = Order::where('user_id',Auth::user()->id)->get();
+            // return $orders;
+        }
+        // return $orders;
+        return view('front.orderCheck.index',compact('orders'));
     }
 }

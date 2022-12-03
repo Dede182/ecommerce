@@ -55,7 +55,11 @@
 
         <div class="flex justify-between items-center font-semibold mt-3">
             <p class="text-gray-700 text-sm ">Total (USD)</p>
-            <span class="text-gray-900 text-md ">${{ $total - $deli }}</span>
+            @php
+                $cost = $total + $deli
+            @endphp
+            <span class="text-gray-900 text-md ">${{ $cost }}</span>
+            <input hidden class="hidden" form="check" name = "total" value = {{ $cost }} >
         </div>
     </div>
 

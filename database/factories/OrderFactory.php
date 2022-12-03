@@ -23,7 +23,8 @@ class OrderFactory extends Factory
            'user_id' => User::inRandomOrder()->first(),
            'admin_id' => User::where('role','admin')->first(),
            'code' => fake()->numerify("########"),
-            'status' => fake()->randomElement(['Pending','Delivered'])
+           'total' => fake()->randomFloat($nbMaxDecimals = 2, $min = 20, $max = 20000),
+            'status' => fake()->randomElement(['Pending','Delivered','Cancelled'])
         ];
     }
 }

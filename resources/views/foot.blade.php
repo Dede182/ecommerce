@@ -1,4 +1,4 @@
-<div class="w-full bg-[#808080] px-16 2xl:px-28  pt-12 pb-5 mt-10 bg-opacity-10">
+<div class="w-full bg-[#808080] px-16 2xl:px-28  pt-12 pb-5 mt-10 bg-opacity-10  ">
     <div class="flex flex-col w-full tracking-tight">
         <div class="flex space-x-5 items-center justify-between pb-12 border-b border-dotted border-gray-400 border-opacity-70">
             <div class="flex items-center space-x-3 text-gray-600  border-r pr-9 border-dashed border-black">
