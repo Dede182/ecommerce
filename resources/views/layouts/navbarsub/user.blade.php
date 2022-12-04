@@ -5,7 +5,12 @@
 
         <div x-on:click="open = ! open"
             class="flex items-center cursor-pointer hover:text-green-500 focus:text-green-500">
+            @auth
             <img src="{{ asset('default user.jpg') }}" class="w-5 h-5 rounded-full object-cover" alt="">
+            @endauth
+            @guest
+            <i class="fa-solid fa-right-to-bracket"></i>
+            @endguest
             @auth
                 <div class="flex items-center justify-center">
                     <div class="avatar ">
@@ -40,7 +45,7 @@
                         @endadmin
 
 
-                        <form
+                        <form method="POST"
                             class="flex w-full justify-start pl-4 items-center text-sm space-x-2 py-3 hover:bg-gray-200"
                             action="{{ route('logout') }}">
                             @csrf

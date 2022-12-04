@@ -50,6 +50,7 @@ Route::middleware('auth','isAdmin')->group(function(){
     Route::resource('/product',ProductController::class);
     Route::get('/orderList',[OrderListController::class,'index'])->name('orderList.index');
     Route::get('/orderList/{order}',[OrderListController::class,'show'])->name('orderList.show');
+    Route::get('/orderList/{order}/update',[OrderListController::class,'update'])->name('orderList.update');
 
 });
 

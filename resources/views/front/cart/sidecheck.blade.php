@@ -22,7 +22,7 @@
         <div class="pb-2 flex flex-col w-full px-4 pt-3">
             <div class="flex justify-between items-center font-semibold">
                 <p>Total(USD)</p>
-                <p class="text-greu check">{{ $total }}</p>
+                <p class="text-greu check">${{ $total }}</p>
             </div>
             <form action="{{ route('order.store') }}" id = "checkout" method="POST">
                 @csrf

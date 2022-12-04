@@ -7,12 +7,26 @@
                     <div class="flex w-full justify-between">
                         <h3 class="font-semibold font-Inter">Order List</h3>
 
-                        <div class="">
-                            {{-- <a href="{{ route('product.create') }}" class="text-white bg-green-700 px-4 py-2 rounded-xl">
-                                <button>
-                                    Add Product
+                        <div class="relative">
+                            <form action="{{ route('orderList.index') }}"  class="flex text-sm space-x-0">
+                                <input name = "search" class="px-3 py-2 w-60 rounded-l-md text-xs placeholder:text-gray-500" type="text"
+                                    placeholder="Searched By Code" value="{{ request('search') }}">
+                                <button class="border rounded-r-md px-3 border-greu bg-greu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                        stroke="#fff" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                    </svg>
                                 </button>
-                            </a> --}}
+                            </form>
+                            @if (request('search'))
+                            <form action="{{ route('orderList.index') }}">
+                                <button>
+                                    <i class="fa-solid fa-xmark absolute right-14 top-2"></i>
+                                </button>
+                            </form>
+                            @endif
+
                         </div>
                     </div>
 

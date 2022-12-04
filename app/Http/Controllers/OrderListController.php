@@ -12,8 +12,11 @@ class OrderListController extends Controller
     public function index(){
 
         $adminId = Auth::user()->id;
-        $orders = Order::
-        where('admin_id',$adminId)
+        $orders = Order:: when(request('search'),function($q){
+                $search = request('search');
+                $q->orWhere('code' ,'like',"%$search%");
+            })
+        ->where('admin_id',$adminId)
         ->latest()
         ->paginate(10)
         ->withQueryString();            ;
@@ -25,5 +28,11 @@ class OrderListController extends Controller
         $orders = $order;
         $user = User::where('id',$orders->user_id)->first();
         return view('dashboard.orderlList.show',compact('orders','user'));
+    }
+
+    public function update(Order $order,Request $request){
+        $order->status = "Delivered";
+        $order->update();
+        return redirect()->back()->with('status','Order was delivered');
     }
 }

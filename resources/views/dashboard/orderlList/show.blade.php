@@ -9,9 +9,18 @@
                             <h3 class="font-semibold font-Inter text-gray-600 border-gray-300">Order
                                 #{{ $orders->code }}</h3>
 
-                            <form action="">
-                                <button class="w-28 bg-greu  text-white rounded-md h-6 flex items-center justify-center text-xs">Mark as Delivered</button>
+                            @if ($orders->status === "Pending")
+                            <form action="{{ route("orderList.update",$orders->id) }}">
+                                <button class="w-28 bg-yellow-400 hover:bg-yellow-500 transition  text-white rounded-md h-6 flex items-center justify-center text-xs">Mark as Delivered</button>
                             </form>
+                            @else
+                            <button class="w-28 bg-greu  text-white rounded-md h-6 flex items-center justify-center text-xs"> Delivered
+                                <i class="fa-solid fa-check ml-1"></i>
+                            </button>
+                            @endif
+
+
+
                         </div>
 
 

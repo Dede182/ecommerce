@@ -9,7 +9,7 @@
 
 
             <div class="flex space-x-4 items-center">
-                <a href = "{{ route('front.products') }}" class="text-[13px] text-gray-600 flex flex-nowrap whitespace-nowrap">All Products</a>
+                <a href = "{{ route('front.products') }}" class="text-[13px] text-gray-600 hover:text-gray-900 transition flex flex-nowrap whitespace-nowrap">All Products</a>
             </div>
         </div>
         <div class=" flex items-center w-full justify-end">

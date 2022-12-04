@@ -94,7 +94,7 @@ class OrderController extends Controller
         // return $request;
         if($request->history){
             $time = $request->history;
-            $time = Carbon::now()->subMinutes($time);
+            $time = Carbon::now()->subDays($time);
             $orders = Order::where('user_id',Auth::user()->id)->where('created_at','>=',$time)->get();
             // return $orders;
         }
