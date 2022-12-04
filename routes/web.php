@@ -49,6 +49,7 @@ Route::middleware('auth','isAdmin')->group(function(){
     Route::resource('/category',CategoryController::class);
     Route::resource('/product',ProductController::class);
     Route::get('/orderList',[OrderListController::class,'index'])->name('orderList.index');
+    Route::get('/orderList/{order}',[OrderListController::class,'show'])->name('orderList.show');
 
 });
 

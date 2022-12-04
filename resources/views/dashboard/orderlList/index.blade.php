@@ -33,7 +33,7 @@
                                     <th scope="col" class="py-3 px-6 text-center">
                                         Payment Method
                                     </th>
-                                    <th scope="col" class="py-3 px-6 ">
+                                    <th scope="col" class="py-3 px-6 text-center">
                                         Delivery Status
                                     </th>
                                     <th scope="col" class="py-3 px-6 text-center">
@@ -71,7 +71,7 @@
                                         </td>
                                         <td
                                             class="py-4 px-6 font-medium  text-xs whitespace-nowrap dark:text-white">
-                                            <div class="w-20 h-6   flex items-center justify-center bg-opacity-80 rounded-sm text-white
+                                            <div class="w-20 h-6 mx-auto  flex items-center justify-center bg-opacity-80 rounded-sm text-white
                                             {{ App\Helpers\MbCalculate::status($order->status) }}
                                             ">
                                                <p> {{ $order->status }}</p>
@@ -80,6 +80,13 @@
                                         <td
                                         class="py-4 px-6 font-medium text-gray-500 text-center text-xs whitespace-nowrap dark:text-white">
                                         ${{ $order->total }}
+                                    </td>
+
+                                    <td
+                                    class="py-4 px-6 font-medium    text-center text-xs whitespace-nowrap  ">
+                                        <a href = "{{ route('orderList.show',$order->id) }}" class="mx-auto   flex items-center justify-center   transition rounded-md text-greu">
+                                            Manage
+                                        </a>
                                     </td>
                                     </tr>
                                 @empty

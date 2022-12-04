@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,5 +19,11 @@ class OrderListController extends Controller
         ->withQueryString();            ;
 
         return view('dashboard\orderlList\index',compact('orders'));
+    }
+
+    public function show(Order $order){
+        $orders = $order;
+        $user = User::where('id',$orders->user_id)->first();
+        return view('dashboard.orderlList.show',compact('orders','user'));
     }
 }
